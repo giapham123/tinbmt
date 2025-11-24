@@ -1,0 +1,4 @@
+/* Default line spacing for TinyMCE content */
+.mce-content-body {
+    line-height: normal; /* Default value */
+}

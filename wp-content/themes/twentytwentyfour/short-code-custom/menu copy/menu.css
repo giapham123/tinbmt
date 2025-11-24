@@ -1,0 +1,115 @@
+/* ========================= */
+/* ===== MENU CHÍNH ========= */
+/* ========================= */
+
+.vnexpress-main-nav-container {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 10px;
+    font-family: Arial, sans-serif;
+    line-height: 1.2;
+    position: relative;
+    overflow: visible;
+}
+
+.vnexpress-main-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.vnexpress-main-menu > li {
+    position: relative;
+}
+
+.vnexpress-main-menu a {
+    display: block;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    transition: color 0.2s;
+}
+
+.vnexpress-main-menu li.current-menu-item a {
+    color: #880000;
+    font-weight: bold;
+}
+
+/* ========================= */
+/* ===== SUBMENU =========== */
+/* ========================= */
+
+.vnexpress-main-menu ul.sub-menu {
+    display: none; /* ẩn mặc định */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    min-width: 240px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px 0;
+}
+
+/* Hover show submenu */
+.vnexpress-main-menu li.menu-item-has-children:hover > ul.sub-menu {
+    display: flex; /* show khi hover menu cha */
+    gap: 30px;
+    flex-wrap: nowrap;
+}
+
+/* Submenu item */
+.vnexpress-main-menu ul.sub-menu li {
+    display: block;
+}
+
+.vnexpress-main-menu ul.sub-menu a {
+    padding: 8px 15px;
+    font-size: 14px;
+    white-space: nowrap; /* không xuống dòng */
+    width: max-content;
+    border-bottom: none; /* loại bỏ line dưới item */
+    transition: color 0.2s, background-color 0.2s; /* mượt hover */
+}
+
+/* Hover submenu màu đỏ */
+.vnexpress-main-menu ul.sub-menu a:hover {
+    color: #ff0000; /* chữ đỏ */
+    background-color: #f5f5f5; /* nền sáng khi hover */
+}
+
+/* Multi-column submenu */
+.vnexpress-main-menu ul.sub-menu.multi-columns {
+    gap: 30px;
+    padding: 10px 15px;
+}
+
+.vnexpress-main-menu ul.sub-menu.multi-columns .submenu-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.vnexpress-main-menu ul.sub-menu.multi-columns li {
+    white-space: nowrap; /* giữ item không xuống dòng */
+}
+
+.vnexpress-main-menu ul.sub-menu.multi-columns a {
+    width: max-content;
+    border-bottom: none; /* loại bỏ line */
+}
+
+/* Submenu cấp 3 → sang phải */
+.vnexpress-main-menu ul.sub-menu ul.sub-menu {
+    top: 0;
+    left: 100%;
+    margin-left: 1px;
+}
+.vnexpress-main-menu li.menu-item-home > a::before {
+    content: "🏠 "; /* Hoặc Font Awesome icon */
+    margin-right: 5px;
+}

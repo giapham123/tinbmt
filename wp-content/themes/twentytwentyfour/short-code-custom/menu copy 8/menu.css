@@ -1,0 +1,413 @@
+/* ===== HEADER TOP ===== */
+.vnexpress-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* padding: 5px 15px; */
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    z-index: 999;
+}
+
+.vnexpress-logo img {
+    max-height: 70px;
+    height: auto;
+}
+
+/* CONTACT */
+.vnexpress-contact a {
+    font-size: 13px;
+    font-weight: bold;
+    color: #880000;
+    text-decoration: none;
+}
+
+/* HAMBURGER */
+.vnexpress-hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding: 10px 15px;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+/* MAIN MENU */
+.vnexpress-main-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    white-space: nowrap;
+    background: #fff;
+}
+
+.vnexpress-main-menu>li {
+    position: relative;
+}
+
+.vnexpress-main-menu a {
+    display: block;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    transition: color 0.2s;
+    outline: none;
+    border: none;
+}
+
+.vnexpress-main-menu li.current-menu-item a {
+    color: #880000;
+    font-weight: bold;
+}
+
+/* Submenu */
+.vnexpress-main-menu ul.sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    min-width: 240px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px 0;
+}
+.vnexpress-main-menu li.menu-item-has-children:hover > ul.sub-menu { 
+    display: flex; 
+    gap: 30px; 
+    flex-wrap: nowrap; 
+}
+.vnexpress-main-menu ul.sub-menu li { display: block; }
+.vnexpress-main-menu ul.sub-menu a { 
+    padding: 8px 15px; 
+    font-size: 14px; 
+    white-space: nowrap; 
+    width: max-content; 
+    transition: color 0.2s, background-color 0.2s; 
+
+    outline: none;
+    border: none;
+}
+.vnexpress-main-menu ul.sub-menu a:hover { color: #ff0000; background-color: #f5f5f5; }
+
+/* Multi-column submenu */
+.vnexpress-main-menu ul.sub-menu.multi-columns {
+    gap: 30px;
+    padding: 10px 15px;
+}
+
+.vnexpress-main-menu ul.sub-menu.multi-columns .submenu-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.vnexpress-main-menu ul.sub-menu.multi-columns li {
+    white-space: nowrap;
+}
+
+.vnexpress-main-menu ul.sub-menu ul.sub-menu {
+    top: 0;
+    left: 100%;
+    margin-left: 1px;
+}
+
+.vnexpress-main-menu li.menu-item-home>a::before {
+    content: "🏠 ";
+    margin-right: 5px;
+}
+.vnexpress-menu-wrapper {
+    border-bottom: 1px solid #e5e5e5;
+        background-color: #fff;  /* make sure parent wrapper is white */
+
+}
+
+/* DESKTOP-ONLY CONTAINER */
+.container-desktop {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+}
+
+/* Apply container only on desktop */
+@media (min-width: 1025px) {
+    .container-desktop {
+        max-width: 1200px;  /* You can change this */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* RESPONSIVE MOBILE MENU */
+@media (max-width:1024px) {
+
+    .vnexpress-contact,
+    .vnexpress-search form {
+        display: none;
+    }
+
+    .vnexpress-search-icon {
+        display: block;
+    }
+
+    .vnexpress-hamburger {
+        display: block;
+    }
+
+    .vnexpress-menu-wrapper {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        max-height: 70vh;
+        overflow-y: auto;
+        background: #fff;
+        position: relative;
+        z-index: 999;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .vnexpress-menu-wrapper.open {
+        display: flex;
+    }
+
+    .vnexpress-main-menu {
+        flex-direction: column;
+        width: 100%;
+        text-align: left;
+    }
+
+    .vnexpress-main-menu>li {
+        width: 100%;
+        padding: 12px 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .vnexpress-main-menu>li:last-child {
+        border-bottom: none;
+    }
+
+    .vnexpress-main-menu ul.sub-menu {
+        display: none;
+        position: static;
+        flex-direction: column;
+        padding-left: 20px;
+    }
+
+    .vnexpress-main-menu li.menu-item-has-children>a::after {
+        content: "▼";
+        margin-left: 6px;
+        font-size: 12px;
+    }
+
+    .vnexpress-hamburger {
+        display: none;
+        width: 100%;
+        padding: 10px 15px;
+        background: #fff;
+        border-bottom: 1px solid #e5e5e5;
+        box-sizing: border-box;
+        z-index: 9999;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        overflow-x: auto;
+        /* allow horizontal scroll if needed */
+        white-space: nowrap;
+        /* prevent wrapping */
+    }
+
+    /* Hamburger icon */
+    .hamburger-icon {
+        font-size: 28px;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    /* Links inside hamburger bar */
+    .vnexpress-hamburger-links {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        /* space between links and separator */
+        flex-shrink: 0;
+        /* prevent shrinking */
+        white-space: nowrap;
+        /* keep in one line */
+    }
+
+    .vnexpress-hamburger-links a {
+        color: #880000;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .desktop-header {
+        display: none !important;
+    }
+
+
+/* Show only on mobile */
+@media (max-width:1024px) {
+    .vnexpress-hamburger {
+        display: flex;
+    }
+}
+
+/* Header right (Trends | Newest) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.header-right a {
+    color: #880000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-right .separator {
+    color: #000;
+    font-weight: bold;
+}
+/* Mobile hamburger header - compact */
+.vnexpress-hamburger {
+    display: flex;
+    align-items: center;        /* vertically center children */
+    justify-content: space-between; /* left, center, right */
+    width: 100%;
+    padding: 5px 10px;          /* smaller top/bottom padding */
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    line-height: 1;             /* remove extra line spacing */
+}
+
+/* Hamburger icon */
+.hamburger-icon {
+    flex: 0 0 auto;
+    font-size: 24px; /* slightly smaller */
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Logo - center */
+.vnexpress-logo-mobile {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vnexpress-logo-mobile img {
+    max-height: 30px;  /* reduced height */
+    height: auto;
+    width: auto;
+    display: block;
+}
+.vnexpress-logo-mobile br {
+    display: none;   /* hide any <br> added by WordPress */
+}
+
+/* Links - right */
+.vnexpress-hamburger-links {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.vnexpress-hamburger-links a {
+    color: #880000;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.vnexpress-hamburger-links span {
+    color: #880000;
+}
+
+}
+
+.desktop-header {
+    display: flex;
+}
+
+/* HEADER ROW */
+nav+p {
+    display: none;
+}
+
+.vnexpress-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vnexpress-link {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.separator {
+    color: white;
+}
+
+/* Header right links container */
+.header-right {
+    display: flex;             /* horizontal layout */
+    align-items: center;       /* vertical center */
+    gap: 5px;                  /* space between items */
+    font-size: 15px;           /* link font size */
+    white-space: nowrap;       /* prevent wrapping */
+}
+
+/* Individual links */
+.header-right a.vnexpress-header-link {
+    color: #880000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Separator styling */
+.header-right .separator {
+    color: #000;
+    font-weight: bold;
+    margin: 0 2px;             /* optional spacing around | */
+}
+
+
+/* Date styling */
+.header-right .vnexpress-date {
+    color: #555;
+    font-size: 14px; /* slightly smaller than links */
+    font-weight: normal;
+}

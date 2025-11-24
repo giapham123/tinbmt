@@ -1,0 +1,124 @@
+/* ===== HEADER TOP ===== */
+.vnexpress-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    flex-wrap: wrap;
+    z-index: 999;
+}
+.vnexpress-logo img { max-height: 40px; height: auto; }
+
+.vnexpress-search { position: relative; flex: 1 1 auto; margin: 0 10px; }
+.vnexpress-search form { display: flex; }
+.vnexpress-search input[type="text"] {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+.vnexpress-search button {
+    padding: 6px 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    background-color: #880000;
+    color: #fff;
+    cursor: pointer;
+}
+.vnexpress-search-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.vnexpress-contact a {
+    font-size: 13px;
+    font-weight: bold;
+    color: #880000;
+    text-decoration: none;
+}
+
+/* Hamburger */
+.vnexpress-hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding: 10px 15px;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+/* MENU */
+.vnexpress-main-menu { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; white-space: nowrap; flex-wrap: wrap; }
+.vnexpress-main-menu > li { position: relative; }
+.vnexpress-main-menu a { display: block; padding: 10px 12px; text-decoration: none; color: #333; font-size: 15px; transition: color 0.2s; }
+.vnexpress-main-menu li.current-menu-item a { color: #880000; font-weight: bold; }
+
+/* Submenu */
+.vnexpress-main-menu ul.sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    min-width: 240px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px 0;
+}
+.vnexpress-main-menu li.menu-item-has-children:hover > ul.sub-menu { display: flex; gap: 30px; flex-wrap: nowrap; }
+.vnexpress-main-menu ul.sub-menu li { display: block; }
+.vnexpress-main-menu ul.sub-menu a { padding: 8px 15px; font-size: 14px; white-space: nowrap; width: max-content; transition: color 0.2s, background-color 0.2s; }
+.vnexpress-main-menu ul.sub-menu a:hover { color: #ff0000; background-color: #f5f5f5; }
+
+/* Multi-column submenu */
+.vnexpress-main-menu ul.sub-menu.multi-columns { gap: 30px; padding: 10px 15px; }
+.vnexpress-main-menu ul.sub-menu.multi-columns .submenu-col { display: flex; flex-direction: column; }
+.vnexpress-main-menu ul.sub-menu.multi-columns li { white-space: nowrap; }
+.vnexpress-main-menu ul.sub-menu.multi-columns a { width: max-content; }
+
+/* Submenu cấp 3 */
+.vnexpress-main-menu ul.sub-menu ul.sub-menu { top: 0; left: 100%; margin-left: 1px; }
+.vnexpress-main-menu li.menu-item-home > a::before { content: "🏠 "; margin-right: 5px; }
+
+/* RESPONSIVE */
+@media (max-width:1024px){
+    .vnexpress-contact { display: none; }
+    .vnexpress-search form { display: none; }
+    .vnexpress-search-icon { display: block; }
+
+    .vnexpress-hamburger { display: block !important; }
+
+    .vnexpress-menu-wrapper {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        max-height: 500px;
+        overflow-y: auto;
+        background: #fff;
+        position: relative;
+        z-index: 999;
+    }
+    .vnexpress-menu-wrapper.open { display: flex; }
+
+    .vnexpress-main-menu { flex-direction: column; width: 100%; text-align: left; }
+    .vnexpress-main-menu > li { width: 100%; padding: 10px 15px; border-bottom: 1px solid #eee; }
+    .vnexpress-main-menu > li:last-child { border-bottom: none; }
+
+    .vnexpress-main-menu ul.sub-menu { display: none; flex-direction: column; position: static; padding-left: 15px; }
+    .vnexpress-main-menu li.menu-item-has-children > a::after { content: "▼"; margin-left: 6px; font-size: 12px; }
+}

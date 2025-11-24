@@ -1,0 +1,332 @@
+<?php
+/**
+ * Twenty Twenty-Four functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package Twenty Twenty-Four
+ * @since Twenty Twenty-Four 1.0
+ */
+
+/**
+ * Register block styles.
+ */
+
+if ( ! function_exists( 'twentytwentyfour_block_styles' ) ) :
+	/**
+	 * Register custom block styles
+	 *
+	 * @since Twenty Twenty-Four 1.0
+	 * @return void
+	 */
+	function twentytwentyfour_block_styles() {
+
+		register_block_style(
+			'core/details',
+			array(
+				'name'         => 'arrow-icon-details',
+				'label'        => __( 'Arrow icon', 'twentytwentyfour' ),
+				/*
+				 * Styles for the custom Arrow icon style of the Details block
+				 */
+				'inline_style' => '
+				.is-style-arrow-icon-details {
+					padding-top: var(--wp--preset--spacing--10);
+					padding-bottom: var(--wp--preset--spacing--10);
+				}
+
+				.is-style-arrow-icon-details summary {
+					list-style-type: "\2193\00a0\00a0\00a0";
+				}
+
+				.is-style-arrow-icon-details[open]>summary {
+					list-style-type: "\2192\00a0\00a0\00a0";
+				}',
+			)
+		);
+		register_block_style(
+			'core/post-terms',
+			array(
+				'name'         => 'pill',
+				'label'        => __( 'Pill', 'twentytwentyfour' ),
+				/*
+				 * Styles variation for post terms
+				 * https://github.com/WordPress/gutenberg/issues/24956
+				 */
+				'inline_style' => '
+				.is-style-pill a,
+				.is-style-pill span:not([class], [data-rich-text-placeholder]) {
+					display: inline-block;
+					background-color: var(--wp--preset--color--base-2);
+					padding: 0.375rem 0.875rem;
+					border-radius: var(--wp--preset--spacing--20);
+				}
+
+				.is-style-pill a:hover {
+					background-color: var(--wp--preset--color--contrast-3);
+				}',
+			)
+		);
+		register_block_style(
+			'core/list',
+			array(
+				'name'         => 'checkmark-list',
+				'label'        => __( 'Checkmark', 'twentytwentyfour' ),
+				/*
+				 * Styles for the custom checkmark list block style
+				 * https://github.com/WordPress/gutenberg/issues/51480
+				 */
+				'inline_style' => '
+				ul.is-style-checkmark-list {
+					list-style-type: "\2713";
+				}
+
+				ul.is-style-checkmark-list li {
+					padding-inline-start: 1ch;
+				}',
+			)
+		);
+		register_block_style(
+			'core/navigation-link',
+			array(
+				'name'         => 'arrow-link',
+				'label'        => __( 'With arrow', 'twentytwentyfour' ),
+				/*
+				 * Styles for the custom arrow nav link block style
+				 */
+				'inline_style' => '
+				.is-style-arrow-link .wp-block-navigation-item__label:after {
+					content: "\2197";
+					padding-inline-start: 0.25rem;
+					vertical-align: middle;
+					text-decoration: none;
+					display: inline-block;
+				}',
+			)
+		);
+		register_block_style(
+			'core/heading',
+			array(
+				'name'         => 'asterisk',
+				'label'        => __( 'With asterisk', 'twentytwentyfour' ),
+				'inline_style' => "
+				.is-style-asterisk:before {
+					content: '';
+					width: 1.5rem;
+					height: 3rem;
+					background: var(--wp--preset--color--contrast-2, currentColor);
+					clip-path: path('M11.93.684v8.039l5.633-5.633 1.216 1.23-5.66 5.66h8.04v1.737H13.2l5.701 5.701-1.23 1.23-5.742-5.742V21h-1.737v-8.094l-5.77 5.77-1.23-1.217 5.743-5.742H.842V9.98h8.162l-5.701-5.7 1.23-1.231 5.66 5.66V.684h1.737Z');
+					display: block;
+				}
+
+				/* Hide the asterisk if the heading has no content, to avoid using empty headings to display the asterisk only, which is an A11Y issue */
+				.is-style-asterisk:empty:before {
+					content: none;
+				}
+
+				.is-style-asterisk:-moz-only-whitespace:before {
+					content: none;
+				}
+
+				.is-style-asterisk.has-text-align-center:before {
+					margin: 0 auto;
+				}
+
+				.is-style-asterisk.has-text-align-right:before {
+					margin-left: auto;
+				}
+
+				.rtl .is-style-asterisk.has-text-align-left:before {
+					margin-right: auto;
+				}",
+			)
+		);
+	}
+endif;
+
+add_action( 'init', 'twentytwentyfour_block_styles' );
+
+/**
+ * Enqueue block stylesheets.
+ */
+
+if ( ! function_exists( 'twentytwentyfour_block_stylesheets' ) ) :
+	/**
+	 * Enqueue custom block stylesheets
+	 *
+	 * @since Twenty Twenty-Four 1.0
+	 * @return void
+	 */
+	function twentytwentyfour_block_stylesheets() {
+		/**
+		 * The wp_enqueue_block_style() function allows us to enqueue a stylesheet
+		 * for a specific block. These will only get loaded when the block is rendered
+		 * (both in the editor and on the front end), improving performance
+		 * and reducing the amount of data requested by visitors.
+		 *
+		 * See https://make.wordpress.org/core/2021/12/15/using-multiple-stylesheets-per-block/ for more info.
+		 */
+		wp_enqueue_block_style(
+			'core/button',
+			array(
+				'handle' => 'twentytwentyfour-button-style-outline',
+				'src'    => get_parent_theme_file_uri( 'assets/css/button-outline.css' ),
+				'ver'    => wp_get_theme( get_template() )->get( 'Version' ),
+				'path'   => get_parent_theme_file_path( 'assets/css/button-outline.css' ),
+			)
+		);
+	}
+endif;
+
+add_action( 'init', 'twentytwentyfour_block_stylesheets' );
+
+/**
+ * Register pattern categories.
+ */
+
+if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
+	/**
+	 * Register pattern categories
+	 *
+	 * @since Twenty Twenty-Four 1.0
+	 * @return void
+	 */
+	function twentytwentyfour_pattern_categories() {
+
+		register_block_pattern_category(
+			'twentytwentyfour_page',
+			array(
+				'label'       => _x( 'Pages', 'Block pattern category', 'twentytwentyfour' ),
+				'description' => __( 'A collection of full page layouts.', 'twentytwentyfour' ),
+			)
+		);
+	}
+endif;
+
+add_action( 'init', 'twentytwentyfour_pattern_categories' );
+
+//GPCUSTOM_ADD_ADS GOOGLE
+function adsGoogle() {
+	echo '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7898003616167022"
+		 crossorigin="anonymous"></script>
+		 <meta name="google-adsense-account" content="ca-pub-7898003616167022">
+	';
+	}
+	
+	add_action( 'wp_head', 'adsGoogle' );
+	
+
+//GPCUSTOM-Add shortcode for show data via category
+function my_theme_enqueue_styles() {
+	wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
+	wp_enqueue_style('search-rs-css', get_template_directory_uri() . '/searchresult.css');
+	wp_enqueue_style('search-form-css', get_template_directory_uri() . '/searchform.css');
+	wp_enqueue_style('get-content', get_template_directory_uri() . '/getContent.css');
+}
+add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
+
+require_once get_template_directory() . '/getDataViaCate.php';
+add_shortcode('category_posts', 'category_posts_shortcode');
+
+require_once get_template_directory() . '/searchForm.php';
+add_shortcode('search_form', 'search_form_shortcode');
+
+// Register the shortcode
+require_once get_template_directory() . '/searchResult.php';
+add_shortcode('search_results', 'search_results_shortcode');
+
+// Post content
+require_once get_template_directory() . '/getContent.php';
+add_shortcode('post_content', 'shortcode_post_content');
+
+//End GPCUSTOM-Add shortcode for show data via category
+
+require_once get_template_directory() . '/footer.php';
+
+
+$includes_path = get_template_directory() . '/short-code-custom/get-keyphrase-slug';
+// Include the meta boxes feature
+require_once $includes_path . '/meta-boxes.php';
+
+
+$get_post_path = get_template_directory() . '/short-code-custom/get-post-via-link';
+
+// Include the meta boxes feature
+require_once $get_post_path . '/get-post-link.php';
+
+
+//Comment by facebook
+//$comment_by_fb_path = get_template_directory() . '/short-code-custom/comment-by-facebook';
+//require_once $comment_by_fb_path . '/comment-fb.php';
+
+require_once get_template_directory() . '/keywords-meta.php';
+require_once get_template_directory() . '/footer-custom.php';
+require_once get_template_directory() . '/short-code-custom/linh-vuc-phap-luat/linh-vuc-pl.php';
+require_once get_template_directory() . '/short-code-custom/main-post/list-post-via-cate.php';
+
+
+
+/*
+ * Add Organization Schema
+ */
+function add_organization_schema_to_head() {
+    // Lấy ID logo từ cài đặt WordPress
+    $custom_logo_id = get_theme_mod('custom_logo');
+    $logo_url = $custom_logo_id ? wp_get_attachment_image_url($custom_logo_id, 'full') : '';
+
+    ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Chia Sẻ Luật Việt Nam",
+      "url": "<?php echo esc_url(home_url('/')); ?>",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "<?php echo esc_url($logo_url); ?>"
+      },
+      "sameAs": [
+        "https://www.facebook.com/csl.ngocnguyen"
+      ]
+    }
+    </script>
+    <?php
+}
+add_action('wp_head', 'add_organization_schema_to_head');
+
+
+/*
+ * Add WebSite Schema
+ */
+function add_website_schema_to_head() {
+    ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Chia Sẻ Luật Việt Nam",
+      "url": "<?php echo esc_url(home_url('/')); ?>",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "<?php echo esc_url(home_url('/')); ?>?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <?php
+}
+add_action('wp_head', 'add_website_schema_to_head');
+
+// --- A. Đăng ký Vị trí Menu ---
+function register_vnexpress_menu_location() {
+    register_nav_menu( 'vnexpress_main_nav', __( 'Menu Chính VnExpress', 'text-domain' ) );
+}
+add_action( 'after_setup_theme', 'register_vnexpress_menu_location' );
+
+
+// --- B. Tải Menu Loader ---
+$menu_loader_path = get_template_directory() . '/short-code-custom/menu/menu-loader.php';
+
+if ( file_exists( $menu_loader_path ) ) {
+    require_once( $menu_loader_path );
+}

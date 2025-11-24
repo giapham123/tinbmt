@@ -1,0 +1,291 @@
+/* ================================
+   Beautify Post Styles
+   ================================ */
+
+/* Container */
+.beautify-post {
+  font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #1f2937;
+  margin: 0 auto;
+  text-align: justify;
+  text-justify: inter-word;
+  word-break: break-word;
+  padding: 0 20px; /* ✅ padding 2 bên cho PC */
+}
+
+/* Áp dụng justify cho tất cả thẻ con trừ bảng và tags */
+.beautify-post *:not(table):not(table *):not(.beautify-tags):not(.beautify-tags *) {
+  text-align: justify !important;
+  text-justify: inter-word;
+}
+
+/* Paragraphs */
+.beautify-post p {
+  margin-bottom: 1.2em;
+}
+
+/* Headings */
+.beautify-post h1,
+.beautify-post h2,
+.beautify-post h3,
+.beautify-post h4 {
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.beautify-post h1 { font-size: 1.35rem; }
+.beautify-post h2 { font-size: 1.15rem; }
+.beautify-post h3 { font-size: 1rem; color: #1d4ed8; }
+.beautify-post h4 { font-size: 0.9rem; color: #2563eb; }
+
+/* Links */
+.beautify-post .beautify-link {
+  color: #2563eb;
+  text-decoration: none;
+  border-bottom: 1px dashed #60a5fa;
+  transition: color 0.25s ease, border-bottom 0.25s ease;
+}
+.beautify-post .beautify-link:hover {
+  color: #1e40af;
+  border-bottom: 1px solid #1e40af;
+}
+
+/* Blockquotes */
+.beautify-post blockquote,
+.beautify-post .beautify-quote {
+  margin: 1.5em 0;
+  padding: 1em 1.2em;
+  background: #f9fafb;
+  border-left: 4px solid #3b82f6;
+  font-style: italic;
+  color: #374151;
+  border-radius: 6px;
+  line-height: 1.6;
+}
+
+/* Images */
+.beautify-post img,
+.beautify-post .beautify-image {
+  max-width: 40%;
+  height: auto;
+  display: block;
+  margin: 1.5em auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+.beautify-post img:hover,
+.beautify-post .beautify-image:hover {
+  transform: scale(1.02);
+}
+
+/* Lists */
+.beautify-post ul,
+.beautify-post ol {
+  margin: 1em 0 1.4em 1.4em;
+  line-height: 1.65;
+}
+.beautify-post li {
+  margin-bottom: 0.45em;
+}
+
+/* ================================
+   Tables
+   ================================ */
+.beautify-post table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95rem;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.beautify-post table th,
+.beautify-post table td {
+  border: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  vertical-align: middle;
+  text-align: left; /* mặc định căn trái */
+}
+
+/* Header */
+.beautify-post table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Cột STT */
+.beautify-post table th:first-child,
+.beautify-post table td:first-child {
+  width: 20px;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Cột tiền */
+.beautify-post table td.money,
+.beautify-post table th.money,
+.beautify-post table td[data-type="money"],
+.beautify-post table th[data-type="money"] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Zebra + Hover */
+.beautify-post table tr:nth-child(even) td {
+  background: #fafafa;
+}
+.beautify-post table tr:hover td {
+  background: #f0f9ff;
+}
+
+/* Responsive table scroll on mobile */
+@media (max-width: 768px) {
+  .beautify-post table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* ================================
+   Tags Section
+   ================================ */
+.beautify-tags,
+.beautify-tags * {
+  text-align: left !important; /* ✅ chỉ căn trái */
+  text-justify: auto !important;
+}
+
+.beautify-tags {
+  margin-top: 2.2em;
+  padding-top: 1.2em;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.beautify-tags strong {
+  margin-right: 8px;
+}
+
+.beautify-tag {
+  display: inline-block;
+  margin: 4px 6px 0 0;
+  padding: 5px 12px;
+  background: #f3f4f6;
+  color: #2563eb;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.beautify-tag:hover {
+  background: #2563eb;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ================================
+   Responsive Tweaks
+   ================================ */
+@media (max-width: 768px) {
+  .beautify-post {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    padding: 0 12px;
+  }
+  .beautify-post h1 { font-size: 1.2rem; }
+  .beautify-post h2 { font-size: 1.05rem; }
+  .beautify-post h3 { font-size: 0.95rem; }
+  .beautify-post h4 { font-size: 0.85rem; }
+
+   .beautify-post table th:first-child,
+  .beautify-post table td:first-child {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .beautify-post {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    padding: 0 8px;
+  }
+  .beautify-post h1 { font-size: 1.1rem; }
+  .beautify-post h2 { font-size: 1rem; }
+  .beautify-post h3 { font-size: 0.9rem; }
+  .beautify-post h4 { font-size: 0.8rem; }
+  
+}
+
+
+/* Fix first column width in beautify-post tables */
+.beautify-post table th:first-child,
+.beautify-post table td:first-child {
+  width: 15%;           /* ✅ limit width of first column */
+  min-width: 120px;     /* ✅ ensure readability */
+  max-width: 180px;     /* ✅ prevent too wide on large screens */
+  text-align: center;   /* ✅ center text */
+  white-space: normal;  /* ✅ allow multi-line text */
+  word-break: break-word;
+}
+
+
+
+/* ================================
+   Compact & Beautiful Blockquote
+   ================================ */
+.beautify-post blockquote,
+.beautify-post .beautify-quote {
+  margin: 0.8em 0;                /* smaller vertical space */
+  padding: 0.4em 0.8em;           /* reduced inner space */
+  border-left: 3px solid #3b82f6; /* slim left border */
+  background: #f9fafb;            /* light background */
+  font-size: 0.88rem;             /* small font */
+  line-height: 1.4;               /* ✅ tighter line spacing */
+  color: #374151;                 /* neutral text color */
+  font-style: italic;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+/* Minimal hover touch */
+.beautify-post blockquote:hover,
+.beautify-post .beautify-quote:hover {
+  background: #f3f4f6;
+  transform: translateY(-1px);
+}
+
+/* Decorative quote mark — very subtle and small */
+.beautify-post blockquote::before,
+.beautify-post .beautify-quote::before {
+  content: "❝";
+  font-size: 0.85rem;
+  color: #3b82f6;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .beautify-post blockquote,
+  .beautify-post .beautify-quote {
+    padding: 0.35em 0.7em;
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+}

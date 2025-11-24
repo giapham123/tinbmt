@@ -1,0 +1,113 @@
+/*
+Theme Name: Twenty Twenty-Four
+Theme URI: https://wordpress.org/themes/twentytwentyfour/
+Author: the WordPress team
+Author URI: https://wordpress.org
+Description: Twenty Twenty-Four is designed to be flexible, versatile and applicable to any website. Its collection of templates and patterns tailor to different needs, such as presenting a business, blogging and writing or showcasing work. A multitude of possibilities open up with just a few adjustments to color and typography. Twenty Twenty-Four comes with style variations and full page designs to help speed up the site building process, is fully compatible with the site editor, and takes advantage of new design tools introduced in WordPress 6.4.
+Requires at least: 6.4
+Tested up to: 6.5
+Requires PHP: 7.0
+Version: 1.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: twentytwentyfour
+Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments, translation-ready, wide-blocks, block-styles, style-variations, accessibility-ready, blog, portfolio, news
+*/
+.category-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between posts */
+}
+ 
+.post {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px; /* Space between thumbnail and content */
+}
+ 
+.post-thumbnail-wrapper {
+    flex-shrink: 0; /* Prevent thumbnail from shrinking */
+}
+ 
+.post-thumbnail {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    object-fit: cover; /* Cover the container */
+    border-radius: 8px; /* Optional: rounded corners */
+}
+ 
+.post-content {
+    flex: 1; /* Take up remaining space */
+}
+ 
+.post-content h2 {
+    font-family: serif; /* Use system serif font */
+    font-size: 1.2em; /* Adjust to make the title smaller */
+    margin: 0 0 10px; /* Margin below the title */
+}
+ 
+.post-content a {
+    text-decoration: none; /* Remove underline from title link */
+    color: inherit; /* Ensure link color inherits from the surrounding text */
+}
+ 
+.post-content .excerpt {
+    font-size: 0.9em; /* Make the excerpt font size smaller than the title */
+    color: #333; /* Optional: Set a color for the excerpt */
+    margin: 0; /* Remove margin from excerpt */
+}
+
+
+ 
+.post-date {
+    font-size: 0.8em; /* Adjust font size for the date if needed */
+    color: #666;
+    margin-top: 0px; /* Optional: Set a color for the date */
+}
+/* Container for pagination */
+.pagination {
+    display: flex;
+    justify-content: center; /* Center align pagination links */
+    margin: 20px 0; /* Space above and below pagination */
+}
+ 
+/* Style for each pagination link */
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 4px;
+    text-decoration: none;
+    color: #d72924; /* Link color */
+    border: 1px solid #ddd; /* Border around pagination links */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Adjust font size as needed */
+    text-align: center; /* Center text in pagination links */
+}
+ 
+/* Style for pagination links on hover or when active */
+.pagination a:hover,
+.pagination .current {
+    background-color: #d72924; /* Background color on hover/current */
+    color: #fff; /* Text color on hover/current */
+    border-color: #d72924; /* Border color on hover/current */
+}
+ 
+/* Style for previous and next text */
+.pagination .prev,
+.pagination .next {
+    font-weight: bold; /* Make previous/next links bold */
+}
+@media only screen and (max-width: 768px) {
+    .post-content .excerpt_mobile {
+        font-size: 0.8em; /* Make the excerpt font size smaller than the title */
+        color: #333; /* Optional: Set a color for the excerpt */
+        margin: 0; /* Remove margin from excerpt */
+    }
+    .post-content h2 {
+        font-family: serif; /* Use system serif font */
+        font-size: 0.9em; /* Adjust to make the title smaller */
+        margin: 0 0 10px; /* Margin below the title */
+    }
+}
+

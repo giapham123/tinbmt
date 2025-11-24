@@ -1,0 +1,136 @@
+/* toc-block.css — Updated: smaller header height but still beautiful */
+
+:root {
+    --toc-accent: #0b5ed7;
+    --toc-accent-strong: #2563eb;
+    --toc-accent-soft: rgba(37,99,235,0.06);
+  }
+  
+  /* container */
+  .toc-block {
+      border-radius: 14px;
+      margin: 20px 0;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.08);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+  }
+  
+  /* header gradient (slimmer) */
+  .toc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(90deg, #06b6d4 0%, var(--toc-accent-strong) 100%);
+      color: white;
+      padding: 8px 14px;    /* reduced height */
+      font-size: 14px;      /* smaller font */
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      line-height: 1.4;
+  }
+  .toc-header::before { 
+      content: "📑"; 
+      margin-right: 6px; 
+      font-size: 16px; 
+  }
+  
+  /* toggle button (smaller too) */
+  .toc-toggle {
+      background: rgba(255,255,255,0.18);
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      line-height: 1;
+      border-radius: 50%;
+      width: 26px;   /* smaller */
+      height: 26px;  /* smaller */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.25s ease, background 0.25s ease;
+  }
+  .toc-toggle:hover { 
+      background: rgba(255,255,255,0.32); 
+      transform: rotate(90deg); 
+  }
+  
+  /* list */
+  .toc-list {
+      list-style: none;
+      margin: 0;
+      padding: 12px 0;
+      border-left: 3px solid rgba(37,99,235,0.12);
+      transition: max-height 0.32s ease, opacity 0.24s ease;
+  }
+  
+  /* items */
+  .toc-item { margin: 6px 0; }
+  
+  /* link */
+  .toc-item a {
+      text-decoration: none;
+      color: #0f172a;
+      display: block;
+      padding: 8px 14px;
+      transition: transform 0.2s ease, background 0.18s ease, color 0.18s ease;
+      position: relative;
+      border-radius: 6px;
+      box-sizing: border-box;
+  }
+  
+  /* levels */
+  .toc-item.level-1 a { padding-left: 28px; font-weight: 700; }
+  .toc-item.level-2 a { padding-left: 42px; font-size: 14px; }
+  .toc-item.level-3 a { padding-left: 56px; font-size: 13px; }
+  
+  /* chevrons */
+  .toc-item.level-2 a::before,
+  .toc-item.level-3 a::before {
+      content: "›";
+      position: absolute;
+      left: 18px;
+      color: var(--toc-accent);
+      font-size: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+  
+  /* hover */
+  .toc-item a:hover {
+      background: #f0f8ff;
+      color: var(--toc-accent);
+      transform: translateX(5px);
+  }
+  
+  /* active */
+  .toc-item a.active {
+      background: linear-gradient(90deg, rgba(6,182,212,0.08), rgba(37,99,235,0.06));
+      color: var(--toc-accent);
+      font-weight: 700;
+  }
+  .toc-item a.active::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      background: var(--toc-accent);
+      border-radius: 2px;
+      box-shadow: inset 2px 0 6px rgba(11,94,215,0.06);
+      pointer-events: none;
+  }
+  
+  /* responsive */
+  @media (max-width: 768px) {
+      .toc-header { padding: 6px 10px; font-size: 13px; }
+      .toc-toggle { width: 22px; height: 22px; font-size: 14px; }
+      .toc-item a { padding: 8px 10px; }
+      .toc-item.level-1 a { padding-left: 24px; }
+      .toc-item.level-2 a { padding-left: 36px; }
+      .toc-item.level-3 a { padding-left: 48px; }
+  }
+  

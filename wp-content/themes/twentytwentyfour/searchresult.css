@@ -1,0 +1,90 @@
+/* Container for search results */
+.search-results {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Individual search result item */
+.search-result-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    margin-bottom: 15px;
+}
+
+/* Title of search result item */
+.search-result-title {
+    font-size: 20px;
+    color: #0073aa; /* Change to your preferred color */
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.search-result-title:hover {
+    color: #005177; /* Darker shade for hover effect */
+    text-decoration: underline;
+}
+
+.date-result {
+    font-size: 14px;
+    color: #555;
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+/* Short description/excerpt of search result item */
+.search-result-description {
+    font-size: 16px;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Style for pagination */
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination .page-numbers {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    color: #d72924;
+    text-decoration: none;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.pagination .page-numbers.current {
+    background-color: #d72924;
+    color: #fff;
+    border-color: #d72924;
+}
+
+.pagination .page-numbers:hover {
+    background-color: #eee;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .search-result-item {
+        padding: 10px 0;
+    }
+
+    .search-result-title {
+        font-size: 18px;
+    }
+
+    .search-result-description {
+        font-size: 14px;
+    }
+
+    .pagination .page-numbers {
+        padding: 8px 10px;
+    }
+}

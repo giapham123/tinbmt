@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/cache/
+Disallow: /wp-content/themes/
+Disallow: /wp-content/uploads/wpo/wpo-plugins-tables-list.json
+Allow: /wp-content/uploads/
+Disallow: /?s=
+Disallow: /wp-login.php
+Disallow: /wp-login.php?*
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://chiaseluat.vn/sitemap_index.xml

@@ -1,0 +1,322 @@
+/* ===== HEADER CONTAINER ===== */
+.vnexpress-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    z-index: 999;
+}
+
+/* LOGO */
+.vnexpress-logo img {
+    max-height: 70px;
+    height: auto;
+}
+
+/* CONTACT */
+.vnexpress-contact a {
+    font-size: 13px;
+    font-weight: bold;
+    color: #880000;
+    text-decoration: none;
+}
+
+/* MAIN MENU */
+.vnexpress-main-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    white-space: nowrap;
+    background: #fff;
+}
+
+.vnexpress-main-menu>li {
+    position: relative;
+}
+
+.vnexpress-main-menu a {
+    display: block;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #333;
+    font-size: 15px;
+    transition: color 0.2s;
+    outline: none;
+    border: none;
+}
+
+.vnexpress-main-menu li a:hover {
+    background-color: #f2f2f2;
+    color: red;
+}
+
+.vnexpress-main-menu li.current-menu-item a {
+    color: #880000;
+    font-weight: bold;
+}
+
+/* SUBMENU */
+.vnexpress-main-menu ul.sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    min-width: 240px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.vnexpress-main-menu li.menu-item-has-children:hover>ul.sub-menu {
+    display: flex;
+    gap: 30px;
+    flex-wrap: nowrap;
+}
+
+.vnexpress-main-menu ul.sub-menu li {
+    display: block;
+}
+
+.vnexpress-main-menu ul.sub-menu a {
+    padding: 8px 15px;
+    font-size: 14px;
+    white-space: nowrap;
+    width: max-content;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.vnexpress-main-menu ul.sub-menu a:hover {
+    color: #ff0000;
+    background-color: #f5f5f5;
+}
+
+/* MULTI-COLUMN SUBMENU */
+.vnexpress-main-menu ul.sub-menu.multi-columns {
+    gap: 30px;
+    padding: 10px 15px;
+}
+
+.vnexpress-main-menu ul.sub-menu.multi-columns .submenu-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.vnexpress-main-menu ul.sub-menu ul.sub-menu {
+    top: 0;
+    left: 100%;
+    margin-left: 1px;
+}
+
+/* LOGO + TEXT INLINE */
+.vnexpress-main-menu .menu-item-home a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vnexpress-main-menu .menu-item-home img.vnexpress-home-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* MENU WRAPPER */
+.vnexpress-menu-wrapper {
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #fff;
+}
+
+/* DESKTOP CONTAINER */
+.container-desktop {
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 1025px) {
+    .container-desktop {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* HEADER ROW */
+.vnexpress-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vnexpress-link {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.header-right {
+    gap: 5px;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.header-right a.vnexpress-header-link {
+    color: #880000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.header-right .separator {
+    color: #000;
+    font-weight: bold;
+    margin: 0 2px;
+}
+
+.header-right .vnexpress-date {
+    color: #555;
+    font-size: 14px;
+}
+
+/* HAMBURGER */
+.vnexpress-hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px 15px;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+/* MOBILE STYLES */
+@media (max-width: 1024px) {
+    .vnexpress-hamburger {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 10px;
+    }
+
+    .vnexpress-menu-wrapper {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    .vnexpress-menu-wrapper.open {
+        display: flex;
+    }
+
+    .vnexpress-main-menu {
+        flex-direction: column;
+        width: 100%;
+        text-align: left;
+    }
+
+    .vnexpress-main-menu>li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+
+    .vnexpress-main-menu>li:last-child {
+        border-bottom: none;
+    }
+
+    .vnexpress-main-menu ul.sub-menu {
+        display: none;
+        position: static;
+        flex-direction: column;
+        box-shadow: none;
+    }
+
+    .vnexpress-main-menu ul.sub-menu li {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .vnexpress-main-menu li.menu-item-has-children>a::after {
+        content: "▼";
+        margin-left: 6px;
+        font-size: 12px;
+    }
+
+    .vnexpress-main-menu .menu-item-home img.vnexpress-home-logo {
+        width: 24px;
+        height: 24px;
+    }
+
+    .vnexpress-main-menu .menu-item-home a {
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .desktop-header {
+        display: none !important;
+    }
+
+    /* Mobile logo center */
+    .vnexpress-logo-mobile {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .vnexpress-logo-mobile img {
+        max-height: 30px;
+        height: auto;
+        width: auto;
+    }
+
+    .vnexpress-logo-mobile br {
+        display: none;
+    }
+
+    /* Mobile hamburger links */
+    .vnexpress-hamburger-links {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+    }
+
+    .vnexpress-hamburger-links a {
+        color: #880000;
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration: none;
+    }
+}
+
+/* HIDE EMPTY P TAGS */
+.vnexpress-menu-wrapper > p:empty {
+    display: none;
+}
+
+/* DESKTOP HEADER DISPLAY */
+.desktop-header {
+    display: flex;
+}
+
+/* HIDE NAV + P */
+nav+p {
+    display: none;
+}
