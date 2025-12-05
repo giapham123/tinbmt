@@ -330,3 +330,10 @@ $menu_loader_path = get_template_directory() . '/short-code-custom/menu/menu-loa
 if ( file_exists( $menu_loader_path ) ) {
     require_once( $menu_loader_path );
 }
+
+require_once get_template_directory() . '/function-custom/upload-img.php';
+require_once get_template_directory() . '/short-code-custom/get-post-more-views/get-post-loader.php';
+require_once get_template_directory() . '/short-code-custom/get-post-more-views/func-count-view.php';
+require_once get_template_directory() . '/short-code-custom/get-gold-cafe-price/cafePrice.php';
+require_once get_template_directory() . '/short-code-custom/latest-post/latest-post.php';
+require_once get_template_directory() . '/short-code-custom/related-cate-post/related-cate-post.php';

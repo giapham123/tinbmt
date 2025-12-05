@@ -68,10 +68,10 @@ function gb_get_selected_menu_item($post_id) {
 function gb_display_breadcrumb() {
     if ( is_front_page() || is_home() ) return;
 
-    echo '<nav class="gb-breadcrumb" aria-label="Breadcrumb">';
+    echo '<nav class="gb-breadcrumb-container"><div class="gb-breadcrumb" aria-label="Breadcrumb">';
     echo '<a href="' . esc_url(home_url()) . '">Home</a>';
-
     $sep = '<span class="separator">›</span>';
+
 
     if ( is_single() ) {
         $menu_item = gb_get_selected_menu_item(get_the_ID());
@@ -104,7 +104,7 @@ function gb_display_breadcrumb() {
         echo " $sep 404 Not Found";
     }
 
-    echo '</nav>';
+    echo '</div></nav>';
 }
 
 /**
@@ -122,25 +122,86 @@ add_shortcode('global_breadcrumb', 'gb_breadcrumb_shortcode');
  * Enqueue breadcrumb CSS
  */
 add_action('wp_enqueue_scripts', function() {
-    wp_add_inline_style('wp-block-library', "
+    wp_register_style('gb-breadcrumb-style', false);
+    wp_enqueue_style('gb-breadcrumb-style');
+
+    wp_add_inline_style('gb-breadcrumb-style', "
+        .gb-breadcrumb-container {
+            width: auto;
+            background: #f9f9f9;
+            border-bottom: 1px solid #eee;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
         .gb-breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 0;
             font-size: 14px;
             font-weight: 400;
-            margin: 15px 0 20px;
-            padding: 8px 12px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4px;
         }
+
         .gb-breadcrumb a {
             color: #0073aa;
             text-decoration: none;
             transition: color 0.2s ease-in-out;
+            white-space: nowrap;
         }
+
         .gb-breadcrumb a:hover {
             color: #005177;
             text-decoration: underline;
         }
+
         .gb-breadcrumb .separator {
-            margin: 0 6px;
             color: #999;
+            padding: 0 4px;
+            user-select: none;
+        }
+
+        /* ===============================
+           MOBILE RESPONSIVE ENHANCEMENT
+           =============================== */
+        @media (max-width: 768px) {
+            .gb-breadcrumb {
+                font-size: 13px;
+                line-height: 1.4;
+                gap: 2px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .gb-breadcrumb-container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .gb-breadcrumb a {
+                max-width: 120px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: inline-block;
+            }
+
+            .gb-breadcrumb .separator {
+                padding: 0 2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gb-breadcrumb {
+                font-size: 12px;
+                gap: 1px;
+            }
+
+            .gb-breadcrumb a {
+                max-width: 100px;
+            }
         }
     ");
 });

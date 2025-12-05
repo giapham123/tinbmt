@@ -59,7 +59,7 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_meta_box_script');
  */
 function call_gemini_api($prompt)
 {
-    $api_key  = 'AIzaSyCF6tM5e-AqFUGMV-5KNFlc0vEVydkjNwM';
+    $api_key  = 'AIzaSyDl6hb1-H2YQdhR6sKiFxj0hASH3b0JFRY';
     $model_id = 'gemini-2.0-flash';
     $api_url  = "https://generativelanguage.googleapis.com/v1beta/models/{$model_id}:generateContent?key={$api_key}";
 
@@ -76,10 +76,10 @@ function call_gemini_api($prompt)
         'timeout'   => 45,
         'sslverify' => false, // ⚠️ For development only
     ];
-
     $response = wp_remote_post($api_url, $args);
     $body     = wp_remote_retrieve_body($response);
     $data     = json_decode($body, true);
+error_log(json_encode($data));
 
     return $data['candidates'][0]['content']['parts'][0]['text'] ?? "Không tìm thấy văn bản trong phản hồi.";
 }

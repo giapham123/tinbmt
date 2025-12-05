@@ -1,5 +1,5 @@
 <?php
-define( 'WP_CACHE', true );
+
 
 
 /**
@@ -29,7 +29,7 @@ define( 'DB_NAME', 'csl' );
 define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', '' );
+define( 'DB_PASSWORD', 'root' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
@@ -82,9 +82,9 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/documentation/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
-// define('WP_DEBUG', true);
-// define('WP_DEBUG_LOG', true);
+// define( 'WP_DEBUG', false );
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', true);
 
 //define( 'WP_DEBUG', true );
 //define( 'WP_DEBUG_LOG', true );
@@ -104,5 +104,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
 
-define('WP_HOME', 'http://localhost/csl/');
-define('WP_SITEURL', 'http://localhost/csl/');
+// define('WP_HOME', 'http://localhost:8888/csl/');
+// define('WP_SITEURL', 'http://localhost:8888/csl');

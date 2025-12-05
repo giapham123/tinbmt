@@ -23,33 +23,8 @@ function shortcode_post_content($atts) {
 
     $xpath = new DOMXPath($doc);
 
-    // ✅ Add featured image under <h1> or at the top if no <h1>
-    $featured_img_url = get_the_post_thumbnail_url($post_id, 'full');
-    if ($featured_img_url) {
-        $img = $doc->createElement('img');
-        $img->setAttribute('src', esc_url($featured_img_url));
-        $img->setAttribute('alt', esc_attr($post_title));
-        $img->setAttribute('class', 'beautify-featured-image');
-        $img->setAttribute('style', 'display:block;margin:15px auto;max-width:100%;height:auto;max-height:350px;object-fit:cover;border-radius:10px;');
-
-        $h1 = $xpath->query('//h1')->item(0);
-        if ($h1) {
-            // Insert image right after <h1>
-            if ($h1->nextSibling) {
-                $h1->parentNode->insertBefore($img, $h1->nextSibling);
-            } else {
-                $h1->parentNode->appendChild($img);
-            }
-        } else {
-            // If no <h1> found, insert image at the top
-            $body = $doc->getElementsByTagName('body')->item(0);
-            if ($body->firstChild) {
-                $body->insertBefore($img, $body->firstChild);
-            } else {
-                $body->appendChild($img);
-            }
-        }
-    }
+    // ❌ REMOVE featured image injection COMPLETELY
+    // (Do nothing here)
 
     // ✅ Beautify all <a> tags (not inside TOC)
     $links = $xpath->query('//a[not(ancestor::*[@class="toc" or @id="ez-toc-container"])]');
@@ -68,11 +43,11 @@ function shortcode_post_content($atts) {
         $newContent .= $doc->saveHTML($child);
     }
 
-    // ✅ Clean up extra <br> or empty <p> at the end
+    // Clean <br> or empty <p> at end
     $newContent = preg_replace('/(\s*<br\s*\/?>\s*)+$/i', '', $newContent);
     $newContent = preg_replace('/(\s*<p>\s*<\/p>\s*)+$/i', '', $newContent);
 
-    // ✅ Add post tags at the bottom
+    // Add post tags at bottom
     $tags_list = get_the_tags($post_id);
     if ($tags_list) {
         $newContent .= '<div class="beautify-tags"><strong>📌 Tags:</strong> ';
@@ -90,5 +65,4 @@ function shortcode_post_content($atts) {
     return '<div class="beautify-post">' . trim($newContent) . '</div>';
 }
 
-// Register shortcode
 add_shortcode('post_content', 'shortcode_post_content');

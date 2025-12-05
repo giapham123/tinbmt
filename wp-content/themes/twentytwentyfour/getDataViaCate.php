@@ -1,70 +1,91 @@
 <?php
-// Add this code to your theme's functions.php file or a custom plugin
- 
-// Function to handle the shortcode
 function category_posts_shortcode($atts) {
-    // Define default attributes
+
     $atts = shortcode_atts(
         array(
-            'category' => '', // Default to no category
-            'posts_per_page' => 5, // Default number of posts to show
+            'category' => '',
+            'posts_per_page' => 5,
         ),
         $atts,
         'category_posts'
     );
- 
-    // Extract attributes
-    $category_slug = sanitize_text_field($atts['category']);
-    $posts_per_page = intval($atts['posts_per_page']);
-    $paged = get_query_var('paged') ? get_query_var('paged') : 1; // Get the current page number
- 
-    // Prepare query arguments
+
+    $category_slug   = sanitize_text_field($atts['category']);
+    $posts_per_page  = intval($atts['posts_per_page']);
+    $paged           = get_query_var('paged') ? get_query_var('paged') : 1;
+
     $args = array(
         'category_name'  => $category_slug,
         'posts_per_page' => $posts_per_page,
         'paged'          => $paged,
-        'orderby'        => 'date', // Order by date
-        'order'          => 'DESC', // Descending order
+        'orderby'        => 'date',
+        'order'          => 'DESC',
     );
- 
-    // Create a new instance of WP_Query
+
     $query = new WP_Query($args);
- 
-    // Start output buffering
+
     ob_start();
- 
-    // Check if there are posts
+    ?>
+
+    <style>
+        /* Hide full meta description on mobile */
+        @media (max-width: 768px) {
+            .category-posts .excerpt {
+                display: none !important;
+            }
+            .category-posts .excerpt_mobile {
+                display: none !important;
+            }
+        }
+
+        /* Desktop: show full excerpt, hide mobile excerpt */
+        .category-posts .excerpt_mobile {
+            display: none;
+        }
+    </style>
+
+    <?php
+
     if ($query->have_posts()) {
         echo '<div class="category-posts">';
-        // Loop through the posts
+
         while ($query->have_posts()) {
             $query->the_post();
-           
-            // Get the post thumbnail
-            $thumbnail = has_post_thumbnail() ? get_the_post_thumbnail(null, 'thumbnail', array('class' => 'post-thumbnail')) : '<img src="' . esc_url(get_template_directory_uri()) . '/path/to/default-image.jpg" class="post-thumbnail" alt="Default Thumbnail">';
- 
-            // Get the post date
-            $post_date = get_the_date('j F, Y'); // Format the date as desired
- 
-            // Get the post excerpt with a maximum of 100 words
-            $excerpt = wp_trim_words(get_the_excerpt(), 100, '...');
-            $excerpt_mobile = wp_trim_words(get_the_excerpt(), 25, '...');  
+
+            $thumbnail = has_post_thumbnail()
+                ? get_the_post_thumbnail(null, 'thumbnail', array('class' => 'post-thumbnail'))
+                : '<img src="' . esc_url(get_template_directory_uri()) . '/path/to/default-image.jpg" class="post-thumbnail">';
+
+            $post_date = get_the_date('j F, Y');
+
+            $excerpt         = wp_trim_words(get_the_excerpt(), 100, '...');
+            $excerpt_mobile  = wp_trim_words(get_the_excerpt(), 25, '...');
             ?>
+
             <div class="post">
                 <div class="post-thumbnail-wrapper">
-                    <a href="<?php the_permalink(); ?>"> <?php echo $thumbnail; ?></a>
+                    <a href="<?php the_permalink(); ?>">
+                        <?php echo $thumbnail; ?>
+                    </a>
                 </div>
+
                 <div class="post-content">
                     <b><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></b>
                     <div class="post-date"><?php echo $post_date; ?></div>
-                    <div class="excerpt"><?php echo $excerpt; ?></div>
-                    <div class="excerpt_mobile"><?php echo $excerpt_mobile; ?></div>
+
+                    <!-- Desktop meta desc -->
+                    <div class="excerpt"><?php echo esc_html($excerpt); ?></div>
+
+                    <!-- Mobile meta desc -->
+                    <div class="excerpt_mobile"><?php echo esc_html($excerpt_mobile); ?></div>
                 </div>
             </div>
-            <?php
+
+        <?php
         }
+
         echo '</div>';
- 
+
         // Pagination
         $total_pages = $query->max_num_pages;
         if ($total_pages > 1) {
@@ -78,14 +99,13 @@ function category_posts_shortcode($atts) {
             ));
             echo '</div>';
         }
- 
-        // Reset post data
+
         wp_reset_postdata();
+
     } else {
         echo 'No posts found.';
     }
- 
-    // Get the content from the output buffer
+
     return ob_get_clean();
 }
 ?>

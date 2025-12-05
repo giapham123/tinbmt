@@ -14,7 +14,7 @@ function law_footer_shortcode() {
             color: #333;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
-            margin-top: 50px;
+            /* margin-top: 50px; */
         }
         .law-footer-container {
             max-width: 1200px;
