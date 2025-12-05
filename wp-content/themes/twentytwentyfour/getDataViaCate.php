@@ -28,6 +28,11 @@ function category_posts_shortcode($atts) {
     ?>
 
     <style>
+        /* Page title style */
+        .category-posts-page-title {
+            color: #d72924;
+            margin-bottom: 20px;
+        }
         /* Hide full meta description on mobile */
         @media (max-width: 768px) {
             .category-posts .excerpt {
@@ -45,6 +50,7 @@ function category_posts_shortcode($atts) {
     </style>
 
     <?php
+    echo '<h2 class="category-posts-page-title">' . esc_html(get_the_title(get_the_ID())) . '</h2>';
 
     if ($query->have_posts()) {
         echo '<div class="category-posts">';
