@@ -200,7 +200,7 @@ function law_footer_shortcode() {
             </div>
 
             <div class="law-footer-credit">
-                Thiết kế bởi <strong style="color:#c00;">Chia Sẻ Luật Việt Nam</strong>
+                Thiết kế bởi <strong style="color:#c00;">Tin BMT</strong>
             </div>
 
         </div>

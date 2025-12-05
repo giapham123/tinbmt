@@ -264,59 +264,6 @@ require_once get_template_directory() . '/footer-custom.php';
 require_once get_template_directory() . '/short-code-custom/linh-vuc-phap-luat/linh-vuc-pl.php';
 require_once get_template_directory() . '/short-code-custom/main-post/list-post-via-cate.php';
 
-
-
-/*
- * Add Organization Schema
- */
-function add_organization_schema_to_head() {
-    // Lấy ID logo từ cài đặt WordPress
-    $custom_logo_id = get_theme_mod('custom_logo');
-    $logo_url = $custom_logo_id ? wp_get_attachment_image_url($custom_logo_id, 'full') : '';
-
-    ?>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Chia Sẻ Luật Việt Nam",
-      "url": "<?php echo esc_url(home_url('/')); ?>",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "<?php echo esc_url($logo_url); ?>"
-      },
-      "sameAs": [
-        "https://www.facebook.com/csl.ngocnguyen"
-      ]
-    }
-    </script>
-    <?php
-}
-add_action('wp_head', 'add_organization_schema_to_head');
-
-
-/*
- * Add WebSite Schema
- */
-function add_website_schema_to_head() {
-    ?>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Chia Sẻ Luật Việt Nam",
-      "url": "<?php echo esc_url(home_url('/')); ?>",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "<?php echo esc_url(home_url('/')); ?>?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-    <?php
-}
-add_action('wp_head', 'add_website_schema_to_head');
-
 // --- A. Đăng ký Vị trí Menu ---
 function register_vnexpress_menu_location() {
     register_nav_menu( 'vnexpress_main_nav', __( 'Menu Chính VnExpress', 'text-domain' ) );
@@ -337,3 +284,27 @@ require_once get_template_directory() . '/short-code-custom/get-post-more-views/
 require_once get_template_directory() . '/short-code-custom/get-gold-cafe-price/cafePrice.php';
 require_once get_template_directory() . '/short-code-custom/latest-post/latest-post.php';
 require_once get_template_directory() . '/short-code-custom/related-cate-post/related-cate-post.php';
+
+
+
+/*
+ * Add WebSite Schema
+ */
+function add_website_schema_to_head() {
+    ?>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Tin BMT",
+      "url": "<?php echo esc_url(home_url('/')); ?>",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "<?php echo esc_url(home_url('/')); ?>?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <?php
+}
+add_action('wp_head', 'add_website_schema_to_head');

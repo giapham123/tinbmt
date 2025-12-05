@@ -41,7 +41,7 @@ jQuery(document).ready(function ($) {
     moveHeaderLinksToMobile();
 
     // Hamburger toggle for mobile
-    $('.vnexpress-hamburger').on('click', function () {
+    $('.hamburger-icon').on('click', function () {
         $('.vnexpress-menu-wrapper').slideToggle(300).toggleClass('open');
     });
     
