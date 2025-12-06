@@ -243,3 +243,6 @@ Stack trace:
 #9 /Applications/MAMP/htdocs/csl/index.php(17): require('/Applications/M...')
 #10 {main}
   thrown in /Applications/MAMP/htdocs/csl/wp-includes/class-wp-hook.php on line 324
+[06-Dec-2025 13:25:00 UTC] PHP Warning:  mysqli_real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) in C:\xampp\htdocs\tinbmt\wp-includes\class-wpdb.php on line 1987
+[06-Dec-2025 13:25:01 UTC] PHP Warning:  mysqli_real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) in C:\xampp\htdocs\tinbmt\wp-includes\class-wpdb.php on line 1987
+[06-Dec-2025 13:25:09 UTC] PHP Warning:  mysqli_real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) in C:\xampp\htdocs\tinbmt\wp-includes\class-wpdb.php on line 1987
