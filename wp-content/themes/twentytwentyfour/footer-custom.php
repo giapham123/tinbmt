@@ -165,7 +165,7 @@ function law_footer_shortcode() {
                 <div>
                     <p><strong>Liên hệ:</strong></p>
                     <p>📞 0971.522.778</p>
-                    <p>📧 <a href="mailto:chiaseluat.vn@gmail.com" style="color:#c00; text-decoration:none;">chiaseluat.vn@gmail.com</a></p>
+                    <p>📧 <a href="mailto:chiaseluat.vn@gmail.com" style="color:#c00; text-decoration:none;">tinbmt.vn@gmail.com</a></p>
                     <!-- <p>Fax: (028) 3991 4606</p> -->
                 </div>
 
