@@ -59,7 +59,7 @@ add_action('admin_enqueue_scripts', 'enqueue_custom_meta_box_script');
  */
 function call_gemini_api($prompt)
 {
-    $api_key  = 'AIzaSyDl6hb1-H2YQdhR6sKiFxj0hASH3b0JFRY';
+    $api_key  = 'AIzaSyD6qHyni6ZMtosFpepL4ZkugBWkcLK4Abg';
     $model_id = 'gemini-2.0-flash';
     $api_url  = "https://generativelanguage.googleapis.com/v1beta/models/{$model_id}:generateContent?key={$api_key}";
 
