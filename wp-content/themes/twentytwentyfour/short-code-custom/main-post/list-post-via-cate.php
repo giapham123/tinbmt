@@ -116,7 +116,8 @@ function category_news_styles() {
 
     .main-thumb img {
       width: 100%;
-      height: 240px; /* smaller image */
+      /* height: 240px; smaller image */
+      height:auto;
       object-fit: cover;
       border-radius: 6px;
       display: block;

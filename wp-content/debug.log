@@ -106,3 +106,4 @@
   "tags": "giá cà phê, thị trường cà phê, robusta, arabica, xuất khẩu cà phê, vicoffa, cà phê việt nam"
 }
 
+[08-Dec-2025 08:33:17 UTC] PHP Deprecated:  Creation of dynamic property PUM_Model_Popup::$ref is deprecated in /Applications/MAMP/htdocs/csl/wp-content/plugins/popup-maker/classes/Abstract/Model/Post.php on line 200

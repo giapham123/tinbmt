@@ -310,3 +310,38 @@ function add_website_schema_to_head() {
 }
 add_action('wp_head', 'add_website_schema_to_head');
 
+
+add_filter('manage_posts_columns', function($columns) {
+    $columns['ref'] = 'Ref';
+    return $columns;
+});
+
+add_action('manage_posts_custom_column', function($column, $post_id) {
+    if ($column === 'ref') {
+        $ref = get_post_meta($post_id, '_ref', true);
+        echo esc_html($ref);
+    }
+}, 10, 2);
+add_action('add_meta_boxes', function() {
+    add_meta_box(
+        'ref_meta_box',
+        'Ref Code',
+        function($post) {
+            $ref = get_post_meta($post->ID, '_ref', true);
+            ?>
+            <input type="text" name="ref_field" value="<?php echo esc_attr($ref); ?>" style="width:100%;">
+            <?php
+        },
+        'post',
+        'side'
+    );
+});
+add_action('save_post', function($post_id) {
+    if (isset($_POST['ref_field'])) {
+        update_post_meta(
+            $post_id,
+            '_ref',
+            sanitize_text_field($_POST['ref_field'])
+        );
+    }
+});
