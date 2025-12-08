@@ -2,9 +2,9 @@
 // Register the custom meta box
 function custom_meta_box() {
     add_meta_box(
-        'custom_meta_box_id',          // Unique ID
-        'Custom Content For Post',             // Box title
-        'custom_meta_box_html',        // Content callback
+        'Parse Slug and Keyphrase from JSON',          // Unique ID
+        'Parse Slug and Keyphrase',             // Box title
+        'parse_slug_keyphrase_box',        // Content callback
         'post',                        // Post type (can be 'page', 'post', or custom post type)
         'normal',                      // Context (normal, side, advanced)
         'high'                         // Priority (default, low, high)
@@ -13,7 +13,7 @@ function custom_meta_box() {
 add_action('add_meta_boxes', 'custom_meta_box');
 
 // HTML for the custom meta box
-function custom_meta_box_html($post) {
+function parse_slug_keyphrase_box($post) {
     ?>
     <label for="input_type">Choose Input Type:</label>
     <select id="input_type" style="width: 100%; margin-bottom: 10px;">

@@ -284,7 +284,8 @@ require_once get_template_directory() . '/short-code-custom/get-post-more-views/
 require_once get_template_directory() . '/short-code-custom/get-gold-cafe-price/cafePrice.php';
 require_once get_template_directory() . '/short-code-custom/latest-post/latest-post.php';
 require_once get_template_directory() . '/short-code-custom/related-cate-post/related-cate-post.php';
-
+require_once get_template_directory() . '/short-code-custom/get-keyphrase-slug-parse-json/meta-boxes.php';
+require_once get_template_directory() . '/short-code-custom/get-post-via-json-content/get-post-link.php';
 
 
 /*
@@ -308,3 +309,4 @@ function add_website_schema_to_head() {
     <?php
 }
 add_action('wp_head', 'add_website_schema_to_head');
+
