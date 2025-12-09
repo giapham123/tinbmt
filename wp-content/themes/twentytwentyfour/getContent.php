@@ -62,7 +62,10 @@ function shortcode_post_content($atts) {
         $newContent .= '</div>';
     }
 
-    return '<div class="beautify-post">' . trim($newContent) . '</div>';
+    // ✅ Add title at the top (centered & bigger)
+    $title_html = '<h1 class="beautify-post-title" style="text-align: center; font-size: 2em; margin-bottom: 10px;">' . esc_html($post_title) . '</h1>';
+
+    return '<div class="beautify-post">' . $title_html . trim($newContent) . '</div>';
 }
 
 add_shortcode('post_content', 'shortcode_post_content');

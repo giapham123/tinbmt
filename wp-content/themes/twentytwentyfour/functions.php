@@ -244,15 +244,15 @@ add_shortcode('post_content', 'shortcode_post_content');
 require_once get_template_directory() . '/footer.php';
 
 
-$includes_path = get_template_directory() . '/short-code-custom/get-keyphrase-slug';
-// Include the meta boxes feature
-require_once $includes_path . '/meta-boxes.php';
+// $includes_path = get_template_directory() . '/short-code-custom/get-keyphrase-slug';
+// // Include the meta boxes feature
+// require_once $includes_path . '/meta-boxes.php';
 
 
-$get_post_path = get_template_directory() . '/short-code-custom/get-post-via-link';
+// $get_post_path = get_template_directory() . '/short-code-custom/get-post-via-link';
 
-// Include the meta boxes feature
-require_once $get_post_path . '/get-post-link.php';
+// // Include the meta boxes feature
+// require_once $get_post_path . '/get-post-link.php';
 
 
 //Comment by facebook
