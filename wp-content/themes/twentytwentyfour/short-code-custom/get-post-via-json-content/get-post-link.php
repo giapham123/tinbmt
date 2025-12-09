@@ -21,7 +21,7 @@ function parse_content_meta_box_html($post) {
     <br><br>
 
     <label for="custom_response">Response:</label>
-    <textarea id="custom_response" name="custom_response" rows="5" style="width: 100%"></textarea>
+    <textarea id="custom_response_parse_json" name="custom_response" rows="5" style="width: 100%"></textarea>
     <?php
 }
 

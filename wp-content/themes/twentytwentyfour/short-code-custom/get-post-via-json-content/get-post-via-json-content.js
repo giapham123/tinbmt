@@ -62,7 +62,7 @@ jQuery(document).ready(function ($) {
                     }
 
                     // ✅ Append result messages to response
-                 $('#custom_response').val(
+                 $('#custom_response_parse_json').val(
                     "Meta: " + meta + "\n" +
                     "Tags:: " + tags
                 );

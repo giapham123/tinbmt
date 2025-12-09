@@ -52,7 +52,7 @@ jQuery(document).ready(function ($) {
 
                 // ✅ Append results to response field
         // Ghi ra textarea
-                $('#response_field').val(
+                $('#response_field_parse_json').val(
                     "Title: " + title + "\n" +
                     "Slug: " + slug + "\n" +
                     "Focus: " + focusKeyphrase

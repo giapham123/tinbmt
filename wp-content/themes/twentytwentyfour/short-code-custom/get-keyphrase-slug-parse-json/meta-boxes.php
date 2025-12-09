@@ -27,7 +27,7 @@ function parse_slug_keyphrase_box_callback($post)
     <br><br>
 
     <label>Result</label>
-    <textarea id="response_field" rows="4" style="width:100%;" readonly></textarea>
+    <textarea id="response_field_parse_json" rows="4" style="width:100%;"></textarea>
 <?php
 }
 
