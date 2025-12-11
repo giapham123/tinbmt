@@ -23,13 +23,13 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'csl' );
+define( 'DB_NAME', 'tintuc' );
 
 /** Database username */
 define( 'DB_USER', 'root' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'root' );
+define( 'DB_PASSWORD', '' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
@@ -104,5 +104,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
 
-define('WP_HOME', 'http://localhost:8888/csl/');
-define('WP_SITEURL', 'http://localhost:8888/csl/');
+define('WP_HOME', 'http://localhost/tinbmt/');
+define('WP_SITEURL', 'http://localhost/tinbmt/');
