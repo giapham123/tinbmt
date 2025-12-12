@@ -32,18 +32,14 @@ function custom_latest_posts_small_shortcode() {
     while ($q->have_posts()) {
         $q->the_post();
 
+        // ============================
+        // Source Logo
+        // ============================
         $ref = get_post_meta(get_the_ID(), '_ref', true);
-        // ============================
-        // Dynamic Source Logo Mapping
-        // ============================
         $source_logos = get_source_logos_map();
-
-        // Logo fallback nếu không có ref hoặc chưa map
-        $source_logo = $source_logos[$ref] ?? "https://photo-baomoi.bmcdn.me/a1493a27e7640e3a5775.png";
-
-
+        $source_logo = $source_logos[$ref] ?? $logos['default'];
         // ============================
-        // Lấy ảnh
+        // Image
         // ============================
         $full_thumb = get_the_post_thumbnail_url(get_the_ID(), "full");
 
@@ -57,25 +53,30 @@ function custom_latest_posts_small_shortcode() {
         $display_img = $medium_thumb ?: $full_thumb;
 
         // ============================
-        // Time ago
+        // TIME DISPLAY (UPDATED)
         // ============================
-        $post_time = get_the_time('U');
-        $hours_ago = floor((time() - $post_time) / 3600);
-        $hours_text = $hours_ago . " giờ";
+        $post_time    = get_the_time('U');
+        $current_time = current_time('timestamp');
+        $diff_hours   = ($current_time - $post_time) / 3600;
+
+        if ($diff_hours <= 24) {
+            $time_display = human_time_diff($post_time, $current_time) . " trước";
+        } else {
+            $time_display = get_the_time("d/m/Y");
+        }
 
         // ============================
         // Title – Cat – Date
         // ============================
         $title = get_the_title();
         $link  = get_permalink();
-        $date  = get_the_date("d/m/Y");
         $cats  = get_the_category();
         $cat_name = (!empty($cats)) ? $cats[0]->name : "Tin mới";
-
         ?>
 
         <?php if ($count === 0): ?>
 
+            <!-- First big post -->
             <div style="margin-bottom:14px;">
 
                 <?php if ($display_img): ?>
@@ -93,7 +94,7 @@ function custom_latest_posts_small_shortcode() {
                     <img src="<?php echo esc_url($source_logo); ?>"
                          style="height:22px; width:auto; display:block;">
 
-                    <span style="color:#888; font-size:13px;"><?php echo esc_html($hours_text); ?></span>
+                    <span style="color:#888; font-size:13px;"><?php echo esc_html($time_display); ?></span>
 
                     <span style="color:#888; font-size:13px;"><?php echo esc_html($cat_name); ?></span>
                 </div>
@@ -109,6 +110,7 @@ function custom_latest_posts_small_shortcode() {
 
         <?php else: ?>
 
+            <!-- Small posts -->
             <a href="<?php echo esc_url($link); ?>"
             style="display:flex; gap:10px; margin-bottom:0px; text-decoration:none; padding:6px 0; color:#000;">
 
@@ -127,7 +129,7 @@ function custom_latest_posts_small_shortcode() {
                     <div style="display:flex; align-items:center; gap:14px; margin:6px 0 4px 0;">
                         <img src="<?php echo esc_url($source_logo); ?>"
                              style="height:20px; width:auto; display:block;">
-                        <span style="color:#888; font-size:12px;"><?php echo esc_html($hours_text); ?></span>
+                        <span style="color:#888; font-size:12px;"><?php echo esc_html($time_display); ?></span>
                         <span style="color:#888; font-size:12px;"><?php echo esc_html($cat_name); ?></span>
                     </div>
                     <?php endif; ?>

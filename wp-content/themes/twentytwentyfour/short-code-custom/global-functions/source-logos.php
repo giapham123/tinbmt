@@ -3,6 +3,7 @@
 if (!function_exists('get_source_logos_map')) {
     function get_source_logos_map() {
         return [
+            "default"=>"https://photo-baomoi.bmcdn.me/a1493a27e7640e3a5775.png",
             "vov.vn"                      => "https://photo-baomoi.bmcdn.me/a1493a27e7640e3a5775.png",
             "baogialai.com.vn"           => "",
             "congly.vn"                  => "",
@@ -26,7 +27,7 @@ if (!function_exists('get_source_logos_map')) {
             "vietnamnet.vn"              => "",
             "gocnhinphaply.nguoiduatin.vn" => "",
             "baokhanhhoa.vn"             => "",
-            "congthuong.vn"              => "",
+            "congthuong.vn"              => "https://photo-baomoi.bmcdn.me/a1493a27e7640e3a5775.png",
             "nhandan.vn"                 => "https://photo-baomoi.bmcdn.me/4e023e6de32e0a70533f.png"
             ];
     }

@@ -33,6 +33,25 @@ function category_news_shortcode($atts) {
         ?>
         <div class="category-news-wrapper">
           <?php while ($posts->have_posts()) : $posts->the_post(); ?>
+            <?php
+            // === REF + LOGO ===
+            $ref = get_post_meta(get_the_ID(), '_ref', true);
+            $logos = get_source_logos_map();
+            $logo  = $logos[$ref] ?? $logos['default'];
+
+            // ============================
+            // TIME AGO or dd/mm/yyyy
+            // ============================
+            $post_time    = get_the_time('U');
+            $current_time = current_time('timestamp');
+            $diff_hours   = ($current_time - $post_time) / 3600;
+
+            if ($diff_hours <= 24) {
+                $time_display = human_time_diff($post_time, $current_time) . ' trước';
+            } else {
+                $time_display = get_the_time("d/m/Y");
+            }
+            ?>
             <?php if ($count == 0) : ?>
               <!-- Main big post (left) -->
               <div class="main-post">
@@ -41,6 +60,11 @@ function category_news_shortcode($atts) {
                     <?php if (has_post_thumbnail()) the_post_thumbnail('large'); ?>
                   </div>
                   <h3 class="main-title"><?php the_title(); ?></h3>
+                   <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#888;margin:6px 0;">
+                    <img src="<?php echo esc_url($logo); ?>" style="height:20px;width:auto;">
+                    <span><?php echo esc_html($time_display); ?></span>
+                    <!-- <span><?php echo esc_html($date); ?></span> -->
+                  </div>
                   <p class="main-excerpt"><?php echo wp_trim_words(get_the_excerpt(), 35, '...'); ?></p>
                 </a>
               </div>
@@ -53,10 +77,19 @@ function category_news_shortcode($atts) {
                       <?php if (has_post_thumbnail()) the_post_thumbnail('thumbnail'); ?>
                     </a>
                   </div>
-                  <div class="side-info">
-                    <a href="<?php the_permalink(); ?>" class="side-title"><?php the_title(); ?></a>
-                    
+                   <div class="side-info" style="flex-direction:column;align-items:flex-start;">
+
+                  <a href="<?php the_permalink(); ?>" class="side-title"><?php the_title(); ?></a>
+
+                  <!-- META SMALL -->
+                  <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#888;margin-top:4px;">
+                    <img src="<?php echo esc_url($logo); ?>" style="height:16px;width:auto;">
+                    <span><?php echo esc_html($time_display); ?></span>
+                    <!-- <span><?php echo esc_html($date); ?></span> -->
                   </div>
+
+                </div>
+                  
                 </div>
             <?php endif; ?>
           <?php $count++; endwhile; ?>
