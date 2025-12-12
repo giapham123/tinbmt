@@ -17,16 +17,63 @@ function shortcode_post_content($atts) {
     $content = apply_filters('the_content', $content);
     $post_title = get_the_title($post_id);
 
+    // ===================================================
+    // TIME DISPLAY (NEW)
+    // ===================================================
+    $post_time    = get_post_time('U', true, $post_id);
+    $current_time = current_time('timestamp');
+    $diff_hours   = ($current_time - $post_time) / 3600;
+
+    if ($diff_hours <= 24) {
+        $time_display = human_time_diff($post_time, $current_time) . " trước";
+    } else {
+        $time_display = get_the_time("d/m/Y", $post_id);
+    }
+
+    // ============================
+    //  GET REF + LOGO
+    // ============================
+    $ref = get_post_meta($post_id, '_ref', true);
+    $logos = get_source_logos_map();
+    $logo = $logos[$ref] ?? ($logos['default'] ?? '');
+
+    // Build logo block (if exists)
+    $meta_block = '';
+    if (!empty($logo)) {
+     $meta_block = '
+    <div class="beautify-meta-block"
+         style="
+            display:flex;
+            align-items:center;
+            gap:6px;
+            margin:0;
+            padding:0;
+            text-align:left;
+            font-size:13px;
+            color:#666;
+        ">
+        <img src="' . esc_url($logo) . '"
+             style="
+                height:18px;
+                width:auto;
+                display:block;
+                object-fit:contain;
+                margin:0;
+                padding:0;
+             ">
+        <span style="margin:0; padding:0;">' . esc_html($time_display) . '</span>
+    </div>';
+    }
+
+    // ============================
+    // Process HTML to beautify links
+    // ============================
     libxml_use_internal_errors(true);
     $doc = new DOMDocument();
     $doc->loadHTML('<?xml encoding="utf-8" ?>' . $content);
-
     $xpath = new DOMXPath($doc);
 
-    // ❌ REMOVE featured image injection COMPLETELY
-    // (Do nothing here)
-
-    // ✅ Beautify all <a> tags (not inside TOC)
+    // Beautify <a> (except inside TOC)
     $links = $xpath->query('//a[not(ancestor::*[@class="toc" or @id="ez-toc-container"])]');
     foreach ($links as $link) {
         $style = $link->getAttribute('style');
@@ -36,18 +83,18 @@ function shortcode_post_content($atts) {
         $link->setAttribute('rel', 'noopener noreferrer');
     }
 
-    // ✅ Extract <body> content only
+    // Extract content from <body>
     $body = $doc->getElementsByTagName('body')->item(0);
     $newContent = '';
     foreach ($body->childNodes as $child) {
         $newContent .= $doc->saveHTML($child);
     }
 
-    // Clean <br> or empty <p> at end
+    // Clean trailing tags
     $newContent = preg_replace('/(\s*<br\s*\/?>\s*)+$/i', '', $newContent);
     $newContent = preg_replace('/(\s*<p>\s*<\/p>\s*)+$/i', '', $newContent);
 
-    // Add post tags at bottom
+    // Add TAGS
     $tags_list = get_the_tags($post_id);
     if ($tags_list) {
         $newContent .= '<div class="beautify-tags"><strong>📌 Tags:</strong> ';
@@ -62,10 +109,20 @@ function shortcode_post_content($atts) {
         $newContent .= '</div>';
     }
 
-    // ✅ Add title at the top (centered & bigger)
-    $title_html = '<h1 class="beautify-post-title" style="text-align: center; font-size: 2em; margin-bottom: 10px;">' . esc_html($post_title) . '</h1>';
+    // ============================
+    // FINAL HTML OUTPUT
+    // ============================
+    $title_html = '
+        <h1 class="beautify-post-title" 
+            style="text-align: center; font-size: 2em; margin-bottom: 5px;">
+            ' . esc_html($post_title) . '
+        </h1>';
 
-    return '<div class="beautify-post">' . $title_html . trim($newContent) . '</div>';
+    return '<div class="beautify-post">' 
+            . $title_html 
+            . $meta_block   // 👈 LOGO + TIME HERE
+            . trim($newContent) 
+        . '</div>';
 }
 
 add_shortcode('post_content', 'shortcode_post_content');
