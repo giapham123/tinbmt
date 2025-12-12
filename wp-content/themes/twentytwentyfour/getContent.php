@@ -114,7 +114,7 @@ function shortcode_post_content($atts) {
     // ============================
     $title_html = '
         <h1 class="beautify-post-title" 
-            style="text-align: center; font-size: 2em; margin-bottom: 5px;">
+            style="text-align: center; font-size: 2em; margin-bottom: 5px;margin-top:-30px">
             ' . esc_html($post_title) . '
         </h1>';
 

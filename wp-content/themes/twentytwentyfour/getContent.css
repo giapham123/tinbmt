@@ -71,7 +71,7 @@
 /* Images */
 .beautify-post img,
 .beautify-post .beautify-image {
-  max-width: 40%;
+  max-width: 100% !important;
   height: auto;
   display: block;
   margin: 1.5em auto;
