@@ -139,7 +139,7 @@ function custom_latest_posts_small_shortcode() {
             </a>
 
             <?php if ($count < $q->post_count - 1): ?>
-                <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
+                <hr style="border:0; border-top:1px solid #eee; margin:10px 0;margin-top: 10px !important;">
             <?php endif; ?>
 
         <?php endif; ?>
