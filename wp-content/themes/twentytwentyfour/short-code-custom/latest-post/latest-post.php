@@ -26,36 +26,52 @@ function custom_latest_posts_small_shortcode() {
     </style>
 
     <div class="latest-post-shortcode">
-
     <?php
     $count = 0;
 
     while ($q->have_posts()) {
         $q->the_post();
 
-        // Try to get FULL SIZE featured image
+        $ref = get_post_meta(get_the_ID(), '_ref', true);
+        // ============================
+        // Dynamic Source Logo Mapping
+        // ============================
+        $source_logos = get_source_logos_map();
+
+        // Logo fallback nếu không có ref hoặc chưa map
+        $source_logo = $source_logos[$ref] ?? "https://photo-baomoi.bmcdn.me/a1493a27e7640e3a5775.png";
+
+
+        // ============================
+        // Lấy ảnh
+        // ============================
         $full_thumb = get_the_post_thumbnail_url(get_the_ID(), "full");
 
-        // If no featured image → get first image from content
         if (!$full_thumb) {
             $content = get_the_content();
             preg_match('/<img[^>]+src=["\']([^"\']+)["\']/i', $content, $matches);
             $full_thumb = !empty($matches[1]) ? $matches[1] : "";
         }
 
-        // Output medium version if featured image exists
         $medium_thumb = get_the_post_thumbnail_url(get_the_ID(), "medium");
-
-        // If medium exists → use medium, else use full/content image
         $display_img = $medium_thumb ?: $full_thumb;
 
+        // ============================
+        // Time ago
+        // ============================
+        $post_time = get_the_time('U');
+        $hours_ago = floor((time() - $post_time) / 3600);
+        $hours_text = $hours_ago . " giờ";
+
+        // ============================
+        // Title – Cat – Date
+        // ============================
         $title = get_the_title();
         $link  = get_permalink();
         $date  = get_the_date("d/m/Y");
         $cats  = get_the_category();
         $cat_name = (!empty($cats)) ? $cats[0]->name : "Tin mới";
 
-        $justify = "text-align:justify; text-justify:inter-word;";
         ?>
 
         <?php if ($count === 0): ?>
@@ -68,13 +84,20 @@ function custom_latest_posts_small_shortcode() {
                 <?php endif; ?>
 
                 <a href="<?php echo esc_url($link); ?>" 
-                   style="font-size:18px; font-weight:700; line-height:1.35; text-decoration:none; color:#000; display:block; <?php echo $justify; ?>">
+                   style="font-size:18px; font-weight:700; line-height:1.35; text-decoration:none; color:#000; display:block;">
                    <?php echo esc_html($title); ?>
                 </a>
 
-                <div style="color:#777; font-size:12px; margin:4px 0 8px 0;">
-                    <?php echo esc_html($cat_name); ?> • <?php echo esc_html($date); ?>
+                <?php if (!empty($ref)): ?>
+                <div style="display:flex; align-items:center; gap:16px; margin:8px 0 10px 0;">
+                    <img src="<?php echo esc_url($source_logo); ?>"
+                         style="height:22px; width:auto; display:block;">
+
+                    <span style="color:#888; font-size:13px;"><?php echo esc_html($hours_text); ?></span>
+
+                    <span style="color:#888; font-size:13px;"><?php echo esc_html($cat_name); ?></span>
                 </div>
+                <?php endif; ?>
 
                 <div style="font-size:14px; line-height:1.45; color:#333;">
                     <?php echo esc_html(wp_trim_words(get_the_excerpt(), 30)); ?>
@@ -95,13 +118,20 @@ function custom_latest_posts_small_shortcode() {
                 <?php endif; ?>
 
                 <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+
                     <div style="font-size:15px; font-weight:600; line-height:1.35; color:#000;">
                         <?php echo esc_html($title); ?>
                     </div>
 
-                    <div style="margin-top:4px; color:#666; font-size:12px;">
-                        <?php echo esc_html($cat_name); ?> • <?php echo esc_html($date); ?>
+                    <?php if (!empty($ref)): ?>
+                    <div style="display:flex; align-items:center; gap:14px; margin:6px 0 4px 0;">
+                        <img src="<?php echo esc_url($source_logo); ?>"
+                             style="height:20px; width:auto; display:block;">
+                        <span style="color:#888; font-size:12px;"><?php echo esc_html($hours_text); ?></span>
+                        <span style="color:#888; font-size:12px;"><?php echo esc_html($cat_name); ?></span>
                     </div>
+                    <?php endif; ?>
+
                 </div>
 
             </a>
