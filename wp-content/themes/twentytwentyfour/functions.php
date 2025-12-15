@@ -322,21 +322,44 @@ add_action('manage_posts_custom_column', function($column, $post_id) {
         echo esc_html($ref);
     }
 }, 10, 2);
-add_action('add_meta_boxes', function() {
+add_action('add_meta_boxes', function () {
     add_meta_box(
         'ref_meta_box',
         'Ref Code',
-        function($post) {
+        function ($post) {
+
+            // current saved value
             $ref = get_post_meta($post->ID, '_ref', true);
+
+            // get only URL names (keys)
+            if (function_exists('get_source_logos_map')) {
+                $sources = array_keys(get_source_logos_map());
+            } else {
+                $sources = [];
+            }
             ?>
-            <input type="text" name="ref_field" value="<?php echo esc_attr($ref); ?>" style="width:100%;">
+            <input
+                type="text"
+                name="ref_field"
+                list="ref_sources_list"
+                value="<?php echo esc_attr($ref); ?>"
+                style="width:100%;"
+                placeholder="Select or type source domain"
+            >
+
+            <datalist id="ref_sources_list">
+                <?php foreach ($sources as $source): ?>
+                    <option value="<?php echo esc_attr($source); ?>"></option>
+                <?php endforeach; ?>
+            </datalist>
             <?php
         },
         'post',
         'side'
     );
 });
-add_action('save_post', function($post_id) {
+
+add_action('save_post', function ($post_id) {
     if (isset($_POST['ref_field'])) {
         update_post_meta(
             $post_id,
@@ -345,6 +368,7 @@ add_action('save_post', function($post_id) {
         );
     }
 });
+
 
 
 require_once get_template_directory() . '/short-code-custom/global-functions/source-logos.php';
