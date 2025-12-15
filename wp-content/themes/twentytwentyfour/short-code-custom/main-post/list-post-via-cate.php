@@ -63,7 +63,6 @@ function category_news_shortcode($atts) {
                    <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#888;margin:6px 0;">
                     <img src="<?php echo esc_url($logo); ?>" style="height:20px;width:auto;">
                     <span><?php echo esc_html($time_display); ?></span>
-                    <!-- <span><?php echo esc_html($date); ?></span> -->
                   </div>
                   <p class="main-excerpt"><?php echo wp_trim_words(get_the_excerpt(), 35, '...'); ?></p>
                 </a>
@@ -85,7 +84,6 @@ function category_news_shortcode($atts) {
                   <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#888;margin-top:4px;">
                     <img src="<?php echo esc_url($logo); ?>" style="height:16px;width:auto;">
                     <span><?php echo esc_html($time_display); ?></span>
-                    <!-- <span><?php echo esc_html($date); ?></span> -->
                   </div>
 
                 </div>
