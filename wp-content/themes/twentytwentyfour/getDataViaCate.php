@@ -14,13 +14,21 @@ function category_posts_shortcode($atts) {
     $posts_per_page  = intval($atts['posts_per_page']);
     $paged           = get_query_var('paged') ? get_query_var('paged') : 1;
 
+    // =========================
+    // BUILD QUERY ARGS
+    // =========================
     $args = array(
-        'category_name'  => $category_slug,
         'posts_per_page' => $posts_per_page,
         'paged'          => $paged,
         'orderby'        => 'date',
         'order'          => 'DESC',
+        'post_status'    => 'publish',
     );
+
+    // Nếu KHÔNG phải latest → lọc theo category
+    if ($category_slug && $category_slug !== 'latest') {
+        $args['category_name'] = $category_slug;
+    }
 
     $query = new WP_Query($args);
 
@@ -59,7 +67,12 @@ function category_posts_shortcode($atts) {
     </style>
 
     <?php
-    echo '<h2 class="category-posts-page-title">' . esc_html(get_the_title(get_the_ID())) . '</h2>';
+    // Title động
+    if ($category_slug === 'latest') {
+        echo '<h2 class="category-posts-page-title">Bài viết mới nhất</h2>';
+    } else {
+        echo '<h2 class="category-posts-page-title">' . esc_html(get_the_title(get_the_ID())) . '</h2>';
+    }
 
     if ($query->have_posts()) {
         echo '<div class="category-posts">';
@@ -72,9 +85,7 @@ function category_posts_shortcode($atts) {
                 ? get_the_post_thumbnail(null, 'thumbnail', array('class' => 'post-thumbnail'))
                 : '<img src="' . esc_url(get_template_directory_uri()) . '/path/to/default-image.jpg" class="post-thumbnail">';
 
-            // ============================
-            // TIME AGO (only if < 24h)
-            // ============================
+            // TIME AGO (<24h)
             $post_time    = get_the_time('U');
             $current_time = current_time('timestamp');
             $diff_hours   = ($current_time - $post_time) / 3600;
@@ -90,12 +101,9 @@ function category_posts_shortcode($atts) {
             $logos = get_source_logos_map();
             $logo  = $logos[$ref] ?? $logos['default'];
 
-            // Date
-            $post_date = get_the_date('j F, Y');
-
-            // Excerpts
-            $excerpt         = wp_trim_words(get_the_excerpt(), 100, '...');
-            $excerpt_mobile  = wp_trim_words(get_the_excerpt(), 25, '...');
+            // Excerpt
+            $excerpt        = wp_trim_words(get_the_excerpt(), 100, '...');
+            $excerpt_mobile = wp_trim_words(get_the_excerpt(), 25, '...');
             ?>
 
             <div class="post">
@@ -110,16 +118,10 @@ function category_posts_shortcode($atts) {
 
                     <div class="post-meta-line">
                         <img src="<?php echo esc_url($logo); ?>" alt="logo nguồn">
-                        
-                        <?php if (!empty($time_display)) : ?>
-                            <span><?php echo esc_html($time_display); ?></span>
-                        <?php endif; ?>
-
-                        <!-- <span><?php echo esc_html($post_date); ?></span> -->
+                        <span><?php echo esc_html($time_display); ?></span>
                     </div>
 
                     <div class="excerpt"><?php echo esc_html($excerpt); ?></div>
-
                     <div class="excerpt_mobile"><?php echo esc_html($excerpt_mobile); ?></div>
                 </div>
             </div>
@@ -130,15 +132,13 @@ function category_posts_shortcode($atts) {
         echo '</div>';
 
         // Pagination
-        $total_pages = $query->max_num_pages;
-        if ($total_pages > 1) {
+        if ($query->max_num_pages > 1) {
             echo '<div class="pagination">';
             echo paginate_links(array(
-                'total'   => $total_pages,
-                'current' => $paged,
-                'prev_text' => __('&laquo; Previous'),
-                'next_text' => __('Next &raquo;'),
-                'type'    => 'plain',
+                'total'      => $query->max_num_pages,
+                'current'    => $paged,
+                'prev_text'  => '&laquo; Previous',
+                'next_text'  => 'Next &raquo;',
             ));
             echo '</div>';
         }

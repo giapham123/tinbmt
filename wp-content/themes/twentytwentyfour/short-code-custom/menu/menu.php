@@ -50,7 +50,7 @@ function vnexpress_header_shortcode() {
         <div class="header-right">
             <a href="<?php echo esc_url(home_url('/?page_id=572')); ?>" class="vnexpress-header-link">Nóng</a>
             <span class="separator">|</span>
-            <a href="<?php echo esc_url(home_url('/newest')); ?>" class="vnexpress-header-link">Mới Nhất</a>
+            <a href="<?php echo esc_url(home_url('/moi-nhat')); ?>" class="vnexpress-header-link">Mới Nhất</a>
             <span class="separator">|</span>
             <span class="vnexpress-date"><?php echo esc_html($today); ?></span>
         </div>
@@ -65,7 +65,7 @@ function vnexpress_header_shortcode() {
         <div class="vnexpress-hamburger-links">
             <a href="<?php echo esc_url(home_url('/?page_id=572')); ?>">Nóng</a>
             <span>|</span>
-            <a href="<?php echo esc_url(home_url('/newest')); ?>">Mới Nhất</a>
+            <a href="<?php echo esc_url(home_url('/moi-nhat')); ?>">Mới Nhất</a>
         </div>
     </div>
     <div class="vnexpress-menu-wrapper">
