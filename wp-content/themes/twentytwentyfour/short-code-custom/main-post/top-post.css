@@ -1,0 +1,143 @@
+/* =========================
+   RESET / BASE
+========================= */
+.tinbmt-block {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* =========================
+   MAIN POST
+========================= */
+.tinbmt-main {
+    margin-bottom: 18px;
+}
+
+.tinbmt-main-thumb img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+}
+
+.tinbmt-main-title {
+    margin: 10px 0 6px;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.tinbmt-main-title a {
+    color: #111;
+    text-decoration: none;
+}
+
+.tinbmt-main-title a:hover {
+    color: #c00000;
+}
+
+/* =========================
+   MAIN META
+========================= */
+.tinbmt-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+.source-logo {
+    height: 20px;
+    width: auto;
+    opacity: 0.9;
+}
+
+/* =========================
+   MAIN DESCRIPTION
+========================= */
+.tinbmt-main-desc {
+    font-size: 15px;
+    line-height: 1.55;
+    color: #333;
+}
+
+/* =========================
+   BOTTOM GRID
+========================= */
+.tinbmt-bottom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+@media (max-width: 768px) {
+    .tinbmt-bottom {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =========================
+   ITEM
+========================= */
+.tinbmt-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-thumb img {
+    width: 100%;
+    border-radius: 5px;
+    display: block;
+}
+
+.tinbmt-item-title {
+    margin: 6px 0 4px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.tinbmt-item-title a {
+    color: #222;
+    text-decoration: none;
+}
+
+.tinbmt-item-title a:hover {
+    color: #c00000;
+}
+
+/* =========================
+   ITEM META
+========================= */
+.item-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #888;
+}
+
+.source-logo-mini {
+    height: 20px;
+    width: auto;
+    opacity: 0.85;
+}
+
+/* =========================
+   MOBILE OPTIMIZE
+========================= */
+@media (max-width: 480px) {
+    .tinbmt-main-title {
+        font-size: 19px;
+    }
+
+    .tinbmt-main-desc {
+        font-size: 14px;
+    }
+
+    .tinbmt-item-title {
+        font-size: 14px;
+    }
+}
