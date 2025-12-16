@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode: [latest_post cate="category-slug"]
+ * Shortcode: [latest_post cate="category-slug" per_page="5"]
  */
 
 function custom_latest_posts_small_shortcode($atts) {
@@ -13,8 +13,11 @@ function custom_latest_posts_small_shortcode($atts) {
     // Shortcode attributes
     // ============================
     $atts = shortcode_atts([
-        'cate' => '', // category slug
+        'cate'     => '',   // category slug
+        'per_page' => 5,    // default posts per page
     ], $atts, 'latest_post');
+
+    $per_page = max(1, intval($atts['per_page'])); // đảm bảo >=1
 
     ob_start();
 
@@ -23,7 +26,7 @@ function custom_latest_posts_small_shortcode($atts) {
     // ============================
     $args = [
         'post_type'      => 'post',
-        'posts_per_page' => 5,
+        'posts_per_page' => $per_page,
         'orderby'        => 'date',
         'order'          => 'DESC',
     ];
@@ -41,10 +44,10 @@ function custom_latest_posts_small_shortcode($atts) {
     ?>
 
     <style>
-        .latest-post-shortcode * {
+        /* .latest-post-shortcode * {
             margin: 5px 0 -2px !important;
             padding: 0 !important;
-        }
+        } */
     </style>
 
     <div class="latest-post-shortcode">
@@ -105,13 +108,13 @@ function custom_latest_posts_small_shortcode($atts) {
                 <!-- FIRST BIG POST -->
                 <div style="margin-bottom:14px;">
 
-                       <?php if ($full_thumb) : ?>
+                    <?php if ($full_thumb) : ?>
                         <img src="<?php echo esc_url($full_thumb); ?>"
-                             style="width:100%; border-radius:6px; margin-bottom:8px;">
+                            style="width:100%; border-radius:6px; margin-bottom:8px;">
                     <?php endif; ?>
 
                     <a href="<?php echo esc_url($link); ?>"
-                       style="font-size:18px; font-weight:700; line-height:1.35; text-decoration:none; color:#000; display:block;">
+                    style="font-size:18px; font-weight:700; line-height:1.35; text-decoration:none; color:#000; display:block;">
                         <?php echo esc_html($title); ?>
                     </a>
 
@@ -119,7 +122,7 @@ function custom_latest_posts_small_shortcode($atts) {
                         <div style="display:flex; align-items:center; gap:16px; margin:8px 0 10px;">
                             <?php if ($source_logo) : ?>
                                 <img src="<?php echo esc_url($source_logo); ?>"
-                                     style="height:22px;">
+                                    style="height:22px;">
                             <?php endif; ?>
 
                             <span style="color:#888; font-size:13px;"><?php echo esc_html($time_display); ?></span>
@@ -138,11 +141,11 @@ function custom_latest_posts_small_shortcode($atts) {
 
                 <!-- SMALL POSTS -->
                 <a href="<?php echo esc_url($link); ?>"
-                   style="display:flex; gap:10px; text-decoration:none; padding:6px 0; color:#000;">
+                style="display:flex; gap:10px; text-decoration:none; padding:6px 0; color:#000;">
 
                     <?php if ($display_img) : ?>
                         <img src="<?php echo esc_url($display_img); ?>"
-                             style="width:90px; object-fit:cover; border-radius:4px; flex-shrink:0;">
+                            style="width:90px; object-fit:cover; border-radius:4px; flex-shrink:0;">
                     <?php endif; ?>
 
                     <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
@@ -151,43 +154,18 @@ function custom_latest_posts_small_shortcode($atts) {
                             <?php echo esc_html($title); ?>
                         </div>
 
-                       <?php if (!empty($ref)) : ?>
-                        <div style="
-                            display:flex;
-                            align-items:center;
-                            gap:14px;
-                            margin:6px 0 4px;
-                            flex-wrap:nowrap;
-                            white-space:nowrap;
-                        ">
+                    <?php if (!empty($ref)) : ?>
+                        <div style="display:flex; align-items:center; gap:14px; margin:6px 0 4px; white-space:nowrap;">
                             <?php if ($source_logo) : ?>
-                                <img src="<?php echo esc_url($source_logo); ?>"
-                                    style="
-                                        height:20px;
-                                        width:auto;
-                                        flex-shrink:0;
-                                    ">
+                                <img src="<?php echo esc_url($source_logo); ?>" style="height:20px;">
                             <?php endif; ?>
-
-                            <span style="
-                                color:#888;
-                                font-size:12px;
-                                flex-shrink:0;
-                            ">
-                                <?php echo esc_html($time_display); ?>
-                            </span>
-
-                            <span style="
-                                color:#888;
-                                font-size:12px;
-                                flex-shrink:0;
-                            ">
-                                <?php echo esc_html($cat_name); ?>
-                            </span>
+                            <span style="color:#888; font-size:12px;"><?php echo esc_html($time_display); ?></span>
+                            <span style="color:#888; font-size:12px;"><?php echo esc_html($cat_name); ?></span>
                         </div>
                     <?php endif; ?>
                     </div>
                 </a>
+
                 <?php if ($count < $q->post_count - 1) : ?>
                     <hr style="border:0; border-top:1px solid #eee; margin:10px 0 10px !important;">
                 <?php endif; ?>
