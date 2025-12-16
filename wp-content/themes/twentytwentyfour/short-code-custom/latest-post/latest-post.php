@@ -151,21 +151,43 @@ function custom_latest_posts_small_shortcode($atts) {
                             <?php echo esc_html($title); ?>
                         </div>
 
-                        <?php if (!empty($ref)) : ?>
-                            <div style="display:flex; align-items:center; gap:14px; margin:6px 0 4px;">
-                                <?php if ($source_logo) : ?>
-                                    <img src="<?php echo esc_url($source_logo); ?>"
-                                         style="height:20px;">
-                                <?php endif; ?>
+                       <?php if (!empty($ref)) : ?>
+                        <div style="
+                            display:flex;
+                            align-items:center;
+                            gap:14px;
+                            margin:6px 0 4px;
+                            flex-wrap:nowrap;
+                            white-space:nowrap;
+                        ">
+                            <?php if ($source_logo) : ?>
+                                <img src="<?php echo esc_url($source_logo); ?>"
+                                    style="
+                                        height:20px;
+                                        width:auto;
+                                        flex-shrink:0;
+                                    ">
+                            <?php endif; ?>
 
-                                <span style="color:#888; font-size:12px;"><?php echo esc_html($time_display); ?></span>
-                                <span style="color:#888; font-size:12px;"><?php echo esc_html($cat_name); ?></span>
-                            </div>
-                        <?php endif; ?>
+                            <span style="
+                                color:#888;
+                                font-size:12px;
+                                flex-shrink:0;
+                            ">
+                                <?php echo esc_html($time_display); ?>
+                            </span>
 
+                            <span style="
+                                color:#888;
+                                font-size:12px;
+                                flex-shrink:0;
+                            ">
+                                <?php echo esc_html($cat_name); ?>
+                            </span>
+                        </div>
+                    <?php endif; ?>
                     </div>
                 </a>
-
                 <?php if ($count < $q->post_count - 1) : ?>
                     <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
                 <?php endif; ?>
