@@ -44,10 +44,10 @@ function custom_latest_posts_small_shortcode($atts) {
     ?>
 
     <style>
-        /* .latest-post-shortcode * {
-            margin: 5px 0 -2px !important;
+        .latest-post-shortcode * {
+            margin: 5px 0 0 !important;
             padding: 0 !important;
-        } */
+        }
     </style>
 
     <div class="latest-post-shortcode">
