@@ -21,7 +21,21 @@ function custom_latest_posts_small_shortcode($atts) {
 
     ob_start();
 
+    
     // ============================
+    // Categories to exclude
+    // ============================
+    $exclude_slugs = ['tin-nong', 'tin-noi-bat'];
+    $exclude_ids   = [];
+
+    foreach ($exclude_slugs as $slug) {
+        $term = get_category_by_slug($slug);
+        if ($term) {
+            $exclude_ids[] = $term->term_id;
+        }
+    }
+
+     // ============================
     // Query arguments
     // ============================
     $args = [
@@ -29,11 +43,18 @@ function custom_latest_posts_small_shortcode($atts) {
         'posts_per_page' => $per_page,
         'orderby'        => 'date',
         'order'          => 'DESC',
+        'ignore_sticky_posts' => true,
     ];
 
-    // Filter by category if provided
+    // Nếu có cate → ưu tiên cate đó
     if (!empty($atts['cate'])) {
+
         $args['category_name'] = sanitize_text_field($atts['cate']);
+
+    } elseif (!empty($exclude_ids)) {
+
+        // Không có cate → loại trừ tin-nong & tin-noi-bat
+        $args['category__not_in'] = $exclude_ids;
     }
 
     $q = new WP_Query($args);

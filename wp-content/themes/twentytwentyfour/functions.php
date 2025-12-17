@@ -204,16 +204,6 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
-
-//GPCUSTOM_ADD_ADS GOOGLE
-function adsGoogle() {
-	echo '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7898003616167022"
-		 crossorigin="anonymous"></script>
-		 <meta name="google-adsense-account" content="ca-pub-7898003616167022">
-	';
-	}
-	
-	add_action( 'wp_head', 'adsGoogle' );
 	
 
 //GPCUSTOM-Add shortcode for show data via category
