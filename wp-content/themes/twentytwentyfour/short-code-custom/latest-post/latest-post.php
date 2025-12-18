@@ -130,10 +130,11 @@ function custom_latest_posts_small_shortcode($atts) {
                 <div style="margin-bottom:14px;">
 
                     <?php if ($full_thumb) : ?>
-                        <img src="<?php echo esc_url($full_thumb); ?>"
-                            style="width:100%; border-radius:6px; margin-bottom:8px;">
+                        <a href="<?php echo esc_url($link); ?>" style="display:block;">
+                            <img src="<?php echo esc_url($full_thumb); ?>"
+                                style="width:100%; border-radius:6px; margin-bottom:8px;">
+                        </a>
                     <?php endif; ?>
-
                     <a href="<?php echo esc_url($link); ?>"
                     style="font-size:18px; font-weight:700; line-height:1.35; text-decoration:none; color:#000; display:block;">
                         <?php echo esc_html($title); ?>
