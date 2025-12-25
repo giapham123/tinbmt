@@ -83,6 +83,44 @@ function shortcode_post_content($atts) {
         $link->setAttribute('rel', 'noopener noreferrer');
     }
 
+    // ============================
+    // RESPONSIVE VIDEO (iframe & video)
+    // ============================
+
+    // Handle iframe
+    $iframes = $xpath->query('//iframe');
+    foreach ($iframes as $iframe) {
+        // Force fullscreen support
+        $iframe->setAttribute('allowfullscreen', 'true');
+        $iframe->setAttribute(
+            'allow',
+            'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+        );
+
+        // Create wrapper
+        $wrapper = $doc->createElement('div');
+        $wrapper->setAttribute('class', 'video-responsive');
+
+        // Replace iframe with wrapper
+        $parent = $iframe->parentNode;
+        $parent->replaceChild($wrapper, $iframe);
+        $wrapper->appendChild($iframe);
+    }
+
+    // Handle <video>
+    $videos = $xpath->query('//video');
+    foreach ($videos as $video) {
+        $video->setAttribute('controls', 'true');
+        $video->setAttribute('playsinline', 'true');
+
+        $wrapper = $doc->createElement('div');
+        $wrapper->setAttribute('class', 'video-responsive');
+
+        $parent = $video->parentNode;
+        $parent->replaceChild($wrapper, $video);
+        $wrapper->appendChild($video);
+    }
+
     // Extract content from <body>
     $body = $doc->getElementsByTagName('body')->item(0);
     $newContent = '';
