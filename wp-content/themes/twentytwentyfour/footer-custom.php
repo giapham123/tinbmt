@@ -177,24 +177,11 @@ function law_footer_shortcode() {
                         <a href="#" style="text-decoration:none;">💬 Zalo</a>
                         <a href="#" style="text-decoration:none;">🌐 LinkedIn</a>
                     </div> -->
-                     <div class="law-footer-facebook-wrapper">
-                        <div class="fb-page"
-                            data-href="https://www.facebook.com/csl.ngocnguyen"
-                            data-tabs=""
-                            data-width="500"
-                            data-height="130"
-                            data-small-header="false"
-                            data-adapt-container-width="true"
-                            data-hide-cover="false"
-                            data-show-facepile="false">
-                        </div>
-                    </div>
+                     <div class="fb-page" data-href="https://www.facebook.com/tintucbmt" data-tabs="" data-width="300" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/tintucbmt" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/tintucbmt">Tin Tức Buôn Ma Thuột</a></blockquote></div>
 
     <!-- Load Facebook SDK once -->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="<?php echo wp_generate_password(10, false); ?>">
-    </script>
+   <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v24.0&appId=1056281468767585"></script>
                 </div>
 
             </div>
